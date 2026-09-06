@@ -8,9 +8,20 @@ StonkFlow lets an AI agent launch a coin priced in a real asset (xStock, pre-sto
 
 Read in this order at session start: `docs/CHECKPOINT.md`, then `docs/PRD.md`. The PRD is the spec; sections 7 (functional requirements) and 9 (Day-1 checks) drive the build. The checkpoint holds decisions already made. Do not reopen them without the user.
 
-The repo is docs-only until `/scaffold-project` runs. There are no build, lint, or test commands yet. Add them to this file when the scaffold lands.
+## Commands
 
-## Intended stack (mirror solenrich)
+```
+bun install            # deps (Bun 1.2+)
+bun run dev            # watch mode on :3000, all routes free unless PAYMENTS_ENABLED=true
+bun test               # 22 unit/integration tests, in-memory sqlite, fake StonkFun
+bun test test/launch.test.ts -t "409"   # one test by name
+bun run type-check     # tsc --noEmit
+bun run smoke          # live read-only check against StonkFun (pairs + ANSEM pricing)
+```
+
+Tests never hit the network: `StonkFunClient` takes a `fetchImpl`, and `buildServices` takes `stonkfun`, `ledger`, `treasury` overrides.
+
+## Stack (mirrors solenrich)
 
 The sibling repo `../solenrich` is the reference implementation for payments, MCP, and agent identity. Copy patterns from it instead of inventing new ones:
 
@@ -26,12 +37,12 @@ The sibling repo `../solenrich` is the reference implementation for payments, MC
 
 One deployable Bun/Hono service with four surfaces that share one core:
 
-1. **Router core** (`src/core/`): typed StonkFun client generated from `https://www.stonkfun.xyz/api/public/v1/openapi.json`, plus three idempotent orchestrations: `launch` (prepare -> return unsigned tx), `submit` (forward signed tx), `claim`. StonkFun retry rules are part of the core, not the handlers: on 409 re-run prepare and never re-pay; on 503 with `charged:false` retry; on 429 honor `Retry-After`. StonkFun allows 25 prepare calls/min per IP, so the core queues above 20/min.
-2. **HTTP API** (`src/routes/`): `/v1/launch` and `/v1/fees/claim` sit behind x402. `/v1/launch/submit`, `/v1/launch/{id}`, `/v1/pairs` are free. Prices live in one config table.
-3. **MCP server** (`src/mcp/`): five tools that call the same core functions as the routes. Tool descriptions tell the agent to route SOL pairs to pump.fun and asset pairs to StonkFlow.
-4. **Ledger** (`src/ledger/`): every launch, payment, SOL fronting transfer, buyback, and holder payout is written to the database and rendered on a public page. If it is not on the ledger, it did not happen.
+1. **Router core** (`src/core/launch.ts`, `claim.ts`, `pairs.ts`, `signer.ts`) over `src/stonkfun/client.ts` (reads + prepare/submit/status/claim). `LaunchCore.launch` is the single entry for both signing modes; `submit` and `status` finish self-mode launches. StonkFun retry rules are part of the core, not the handlers: on 409 re-run prepare and never re-pay; on 503 with `charged:false` retry; on 429 honor `Retry-After`. StonkFun allows 25 prepare calls/min per IP, so the core queues above 20/min.
+2. **HTTP API** (`src/routes/v1.ts`, `holder.ts`; x402 mounted in `src/app.ts`): paid routes are `POST /v1/launch/self`, `/v1/launch/managed`, their `/holder` variants, and `POST /v1/fees/claim`. Free: `/v1/pairs`, `/v1/launch/submit`, `/v1/launch/:id`, `/v1/fees/:mint`, `/v1/nonce`, `/ledger`, `/mcp`. Prices and paths live in `PRICING` / `ROUTE_PATHS` in `src/config.ts`. Holder pricing is a separate route gated by a nonce signature plus entry-token balance, because x402 prices are static per route.
+3. **MCP server** (`src/mcp/tools.ts`, `http.ts`): stateless JSON-RPC dispatcher. Read tools call the core directly; paid write tools call the HTTP route so x402 is enforced on one path and the 402 challenge is surfaced as text. Tool descriptions tell the agent to route SOL pairs to pump.fun and asset pairs to StonkFlow.
+4. **Ledger** (`src/ledger/store.ts` on bun:sqlite at `LEDGER_DB_PATH`, `page.ts` server-rendered): every launch, payment, buyback, forward, and claim is a row and is rendered on `/ledger`. If it is not on the ledger, it did not happen.
 
-Two scheduled jobs: the flagship agent policy (one launch per week, reward mode, SolEnrich due-diligence call before any dev buy) and the buyback job (fixed share of router income buys the entry token and ANSEM 50/50, posted to the ledger).
+`src/jobs/`: the flagship calendar (data the ClawPump agent executes) and the buyback job (dry-run until the entry token exists). Two scheduled jobs: the flagship agent policy (one launch per week, reward mode, SolEnrich due-diligence call before any dev buy) and the buyback job (fixed share of router income buys the entry token and ANSEM 50/50, posted to the ledger).
 
 ## Invariants
 
@@ -52,7 +63,9 @@ Two scheduled jobs: the flagship agent policy (one launch per week, reward mode,
 
 ## Docs conventions
 
-- `docs/research/` is gitignored on purpose. Do not add it back.
+- `docs/research/` and `data/` are gitignored on purpose. Do not add them back.
+- `skills/stonkflow/` is the ClawPump community skill (prompt-only). It is copied into a PR on `ClawPump/agents-skills`; keep it in sync with the routes.
+- Write-endpoint field names in `src/stonkfun/types.ts` (`paymentTransaction`, `signedQuote`, `intentId`, `transaction`) are from the endpoint descriptions, not the schema. Verify on the first live launch and fix the types if they differ.
 - `docs/prompts/solenrich-stonkfun-x402-prompt.md` is for the solenrich repo, not this one. It is not on the critical path.
 - Update `docs/CHECKPOINT.md` at every session end. Commit messages carry no Co-Authored-By line.
 - Write in plain, active, present-tense sentences. Same word for the same thing throughout.

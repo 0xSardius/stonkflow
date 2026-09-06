@@ -1,0 +1,32 @@
+{
+  "name": "stonkflow",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Launch coins paired with real assets from any agent. x402 API + MCP + ClawPump skill on top of StonkFun.",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts",
+    "build": "bun build src/index.ts --outdir=dist --target=bun",
+    "type-check": "tsc --noEmit",
+    "test": "bun test",
+    "smoke": "bun run scripts/smoke.ts"
+  },
+  "dependencies": {
+    "@coinbase/x402": "^2.1.0",
+    "@solana/web3.js": "^1.98.4",
+    "@x402/core": "2.17.0",
+    "@x402/evm": "2.4.0",
+    "@x402/extensions": "2.17.0",
+    "@x402/hono": "2.17.0",
+    "@x402/svm": "2.17.0",
+    "bs58": "^6.0.0",
+    "hono": "^4.6.0",
+    "tweetnacl": "^1.0.3",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "bun-types": "^1.3.0",
+    "typescript": "^5.9.2"
+  }
+}

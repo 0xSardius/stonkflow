@@ -6,7 +6,7 @@ Updated: 2026-09-06
 StonkFlow: agent launches of asset-paired coins on StonkFun via x402 + MCP + ClawPump skill. AnsemHack Clawrena entry.
 
 ## State
-- Docs-only repo created 2026-09-06. No code yet.
+- 2026-09-06 evening: scaffold landed (Bun + Hono). Router core, self/managed signing, x402 mount, MCP, sqlite ledger + page, holder gate, ClawPump skill text, 22 tests green, live smoke passes. SolEnrich already has the StonkFun data endpoints (44 paid endpoints landed 2026-09-06 in ../solenrich).
 - Idea phase (solana.new find-next-crypto-idea): scored 13/15. validate-idea sprint not run; folded into Day-1 checks and Sep 17-19 onboarding.
 - PRD v0.1 in docs/PRD.md. Build plan is in the local research folder (not tracked).
 
@@ -27,7 +27,11 @@ Results in PRD section 9. Summary: hosted ClawPump agents cannot sign external t
 
 ## Next
 1. Founder-only checks: create ClawPump agent, enable x402 skill, live x402_pay against a SolEnrich endpoint, set payout wallet.
-2. /scaffold-project (Next.js + @solana/kit + x402 server from solenrich + MCP).
+2. First live self-mode launch on mainnet with the founder's wallet (verifies write-endpoint field names in src/stonkfun/types.ts).
+3. Deploy (Railway, same as solenrich) with PAYMENTS_ENABLED=true; set PUBLIC_URL; bazaar listing follows from CDP settlement.
+4. Treasury keypair + ENTRY_TOKEN_MINT after the token launch; buyback job swap wiring (Jupiter).
+5. Skill PR to ClawPump/agents-skills; MCP manifest for claw-agent optional-mcps.
+6. (was) /scaffold-project (Next.js + @solana/kit + x402 server from solenrich + MCP).
 3. Router core, then token launch with first routed launch.
 
 ## Open questions

@@ -31,3 +31,6 @@ Thumbs.db
 
 # internal research (kept local)
 docs/research/
+
+# runtime data
+data/

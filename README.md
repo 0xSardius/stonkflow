@@ -19,6 +19,17 @@ AnsemHack Clawrena entry. Register and tokenize on ClawPump by 2026-09-20 23:59 
 - $ANSEM: a pricing asset and a dividend currency.
 - pump.fun and ClawPump: SOL launches still go to pump.fun; StonkFlow adds the pairs they do not have.
 
+## Run
+
+```
+bun install
+cp .env.example .env
+bun run dev          # http://localhost:3000  (routes free until PAYMENTS_ENABLED=true)
+bun test
+```
+
+Surfaces: `GET /` (route index), `GET /v1/pairs`, `POST /v1/launch/self|managed`, `POST /v1/launch/submit`, `GET /v1/launch/:id`, `POST /mcp`, `GET /ledger`.
+
 ## Secrets
 
 Copy `.env.example` to `.env`. `.env` and key files are gitignored. Never print secrets in the shell.
