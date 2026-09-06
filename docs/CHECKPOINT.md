@@ -8,7 +8,7 @@ StonkFlow: agent launches of asset-paired coins on StonkFun via x402 + MCP + Cla
 ## State
 - Docs-only repo created 2026-09-06. No code yet.
 - Idea phase (solana.new find-next-crypto-idea): scored 13/15. validate-idea sprint not run; folded into Day-1 checks and Sep 17-19 onboarding.
-- PRD v0.1 in docs/PRD.md. Build plan in docs/research/idea-deep-dive-20260906-pair-router.html.
+- PRD v0.1 in docs/PRD.md. Build plan is in the local research folder (not tracked).
 
 ## Decisions
 - Name: StonkFlow (X handle and domain still to check).
