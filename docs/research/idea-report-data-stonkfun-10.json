@@ -14,7 +14,7 @@
       "x402 ON SOLANA (Sept 2026): Solana overtook Base in x402 tx count and volume on 2026-09-03, now >90% of weekly x402 transactions, 37M+ txs, 70% of monthly volume. Global x402: ~200M txs, ~$50B volume, ~150k merchant endpoints. Most payments are under $0.50 and >99.99% USDC. PayAI/BlockRun settled 5.4M agent payments in one week. This is the rail every idea below monetizes on.",
       "TOKENIZED STOCKS: Solana did $5.8B spot DEX volume in tokenized equities in Q2 2026 (+114% QoQ), daily ATH $683M, cumulative >$10B, 96% of all tokenized stock trades across chains. PreStocks >$750M cumulative. Backpack listed SpaceX via Sunrise on IPO day. StonkFun is the only launchpad that lets a coin be priced in these assets.",
       "AGENT ACTIVITY: automated agents are the majority of Solana DEX volume and >70% on peak launch days. ~65% of agentic AI payments run on Solana. Virtuals (Base) has launched ~14,000 agent tokens and its Agent Commerce Protocol handles agent-to-agent escrow; there is no Solana-native equivalent that pairs agent tokens with real assets.",
-      "COMPETITIVE LANDSCAPE: bags.fm (Meteora DBC, 1% fee share to royalty recipients, developer API at dev.bags.fm, a published Claude Code skill, JackBuilds shipped 35 tools from the Bags hackathon), pump.fun (API, largest volume), FeeSweep (creator fee command center across Bags and Pump.fun; does not cover StonkFun), SolMachina (x402 token-risk API at $0.001-$0.10 per call on Base and Solana), Helius webhooks (generic on-chain events, not StonkFun-aware). Nobody has built agent tooling, event streams, or analytics specific to StonkFun's quote-pair and reward-tax model.",
+      "COMPETITIVE LANDSCAPE: bags.fm (Meteora DBC, 1% fee share to royalty recipients, developer API at dev.bags.fm, a published Claude Code skill, JackBuilds shipped 35 tools from the Bags hackathon), pump.fun (API, largest volume), FeeSweep (the founder's own pre-scaffold creator-fee command center for Bags, Pump.fun, LetsBonk, Jupiter Studio; no StonkFun connector yet), SolMachina (x402 token-risk API at $0.001-$0.10 per call on Base and Solana), Helius webhooks (generic on-chain events, not StonkFun-aware). Nobody has built agent tooling, event streams, or analytics specific to StonkFun's quote-pair and reward-tax model.",
       "HOW TO READ THE SCORES: 0-3 per dimension, founder fit weighs most, then MVP speed, distribution, market pull, revenue. Integration-first: 8 of 10 ideas need no new on-chain program. Ideas #9 (fee-stream market) and #10 (index vault) need custom programs and are marked as such."
     ],
     "clarifying_answers": [
@@ -397,13 +397,13 @@
       "status": "shortlisted",
       "sector": "Creator finance / B2B ops",
       "one_liner": "A console and cron agent for launch studios that claims creator fees across StonkFun, Bags, and Pump, converts to USDC, and pays contributors, KOLs, and AI agents by split rules, including x402-paid services the studio uses.",
-      "why_it_wins": "Not the winner. Validated by FeeSweep (exists for Bags and Pump, not StonkFun) but that also means the wedge is a coverage gap, not a new product. Distribution is fine (studios are reachable), founder fit is medium.",
+      "why_it_wins": "Not the winner, but re-rated: FeeSweep is the founder's own pre-scaffold project (Bags, Pump.fun, LetsBonk, Jupiter Studio; non-custodial propose-then-sign sweeps with policies). Adding a StonkFun connector and x402 agent payouts is an extension of existing work, not a new product. Distribution is fine (studios are reachable); the wedge is a coverage gap, not a new category.",
       "why_crypto_is_necessary": "Fees are on-chain positions that must be claimed by the creator's key; payouts to anonymous contributors and agents settle in USDC without accounts.",
       "kill_this_idea": "FeeSweep adds StonkFun in a weekend. Kill if a comparable tool covers StonkFun before you have 20 paying studios.",
       "why_not_web2": "Claims require wallet signatures and payouts go to wallets; no bank rails involved.",
       "integration_note": "Integration only. GET /launches?creator=, /tokens/{mint}/fees, claim prepare/submit; Bags and Pump claim APIs; Jupiter for conversion; Squads or a simple splitter for payouts.",
       "scores": {
-        "founder_fit": 2,
+        "founder_fit": 3,
         "mvp_speed": 2,
         "distribution_clarity": 2,
         "market_pull": 2,
@@ -411,10 +411,10 @@
       },
       "competitors": [
         {
-          "name": "FeeSweep",
-          "type": "direct",
+          "name": "FeeSweep (the founder's own project, pre-scaffold)",
+          "type": "own asset",
           "signal": "live, covers Bags + Pump.fun",
-          "why_they_have_not_won": "no StonkFun, no splits, no agent payouts"
+          "why_they_have_not_won": "not yet launched; Bags + Pump.fun first; no StonkFun connector yet. This idea is FeeSweep plus a StonkFun connector and agent payouts, so founder fit is higher than scored."
         },
         {
           "name": "Bags fee-share config",
