@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>10 product ideas on the StonkFun developer platform: x402, agentic commerce, and cross-sector gaps</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      /* ===================== THEMES ===================== */
+
+      :root, body.manuscript {
+        --font-body: Georgia, 'Times New Roman', serif;
+        --font-heading: Georgia, 'Times New Roman', serif;
+        --font-mono: 'IBM Plex Mono', 'SF Mono', Menlo, monospace;
+        --font-label: Georgia, 'Times New Roman', serif;
+        --font-size: 17px;
+        --line-height: 1.7;
+        --max-width: 780px;
+        --bg: #FAF8F5;
+        --surface: #FFFFFF;
+        --surface-2: #F5F2ED;
+        --text: #2C2C2C;
+        --text-muted: #6B6B6B;
+        --accent: #1A5276;
+        --accent-soft: rgba(26, 82, 118, 0.07);
+        --border: #E8E4DF;
+        --border-strong: #C8C2B8;
+        --positive: #2E7D57;
+        --negative: #9B3B3B;
+        --warning: #8B6914;
+        --highlight: transparent;
+        --radius: 0;
+        --radius-lg: 0;
+        --shadow: none;
+        --heading-weight: 700;
+        --heading-transform: none;
+        --label-transform: normal;
+        --label-tracking: 0;
+        --label-size: 0.82rem;
+        --label-weight: 600;
+        --rule-weight: 1px;
+        --spacing: 2.5rem;
+      }
+
+      body.linear {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        --font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        --font-mono: 'SF Mono', 'Fira Code', Consolas, monospace;
+        --font-label: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        --font-size: 15px; --line-height: 1.55; --max-width: 1000px;
+        --bg: #131316; --surface: #1C1C21; --surface-2: #25252B;
+        --text: #EDEDEF; --text-muted: #8B8B93;
+        --accent: #7C6AEF; --accent-soft: rgba(124, 106, 239, 0.1);
+        --border: rgba(255,255,255,0.08); --border-strong: rgba(255,255,255,0.14);
+        --positive: #3ECF8E; --negative: #EF4444; --warning: #F5A623;
+        --highlight: transparent;
+        --radius: 10px; --radius-lg: 14px; --shadow: none;
+        --heading-weight: 600; --heading-transform: none;
+        --label-transform: uppercase; --label-tracking: 0.06em;
+        --label-size: 0.7rem; --label-weight: 600;
+        --rule-weight: 1px; --spacing: 1.75rem;
+      }
+
+      body.swiss {
+        --font-body: Helvetica Neue, Helvetica, Arial, sans-serif;
+        --font-heading: Helvetica Neue, Helvetica, Arial, sans-serif;
+        --font-mono: 'Courier New', Courier, monospace;
+        --font-label: Helvetica Neue, Helvetica, Arial, sans-serif;
+        --font-size: 16px; --line-height: 1.5; --max-width: 1080px;
+        --bg: #FFFFFF; --surface: #F5F5F5; --surface-2: #EEEEEE;
+        --text: #0A0A0A; --text-muted: #555555;
+        --accent: #E63B2E; --accent-soft: rgba(230, 59, 46, 0.06);
+        --border: #DDDDDD; --border-strong: #0A0A0A;
+        --positive: #1B7A3D; --negative: #E63B2E; --warning: #CC8800;
+        --highlight: transparent;
+        --radius: 0; --radius-lg: 0; --shadow: none;
+        --heading-weight: 700; --heading-transform: none;
+        --label-transform: uppercase; --label-tracking: 0.12em;
+        --label-size: 0.68rem; --label-weight: 600;
+        --rule-weight: 2px; --spacing: 2rem;
+      }
+
+      body.academic {
+        --font-body: 'Times New Roman', Times, Georgia, serif;
+        --font-heading: 'Times New Roman', Times, Georgia, serif;
+        --font-mono: 'Courier New', Courier, monospace;
+        --font-label: 'Times New Roman', Times, Georgia, serif;
+        --font-size: 16px; --line-height: 1.55; --max-width: 860px;
+        --bg: #FFFFFF; --surface: #F8F8F8; --surface-2: #F0F0F0;
+        --text: #1A1A1A; --text-muted: #4A4A4A;
+        --accent: #1A3C6E; --accent-soft: rgba(26, 60, 110, 0.06);
+        --border: #D0D0D0; --border-strong: #999999;
+        --positive: #2E6B3A; --negative: #8B2500; --warning: #8B6914;
+        --highlight: #FFF3CD;
+        --radius: 0; --radius-lg: 0; --shadow: none;
+        --heading-weight: 700; --heading-transform: none;
+        --label-transform: normal; --label-tracking: 0;
+        --label-size: 0.82rem; --label-weight: 700;
+        --rule-weight: 1px; --spacing: 1.75rem;
+      }
+
+      body.stripe {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        --font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        --font-mono: 'SF Mono', 'Fira Code', Consolas, monospace;
+        --font-label: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        --font-size: 15px; --line-height: 1.6; --max-width: 1020px;
+        --bg: #F6F8FA; --surface: #FFFFFF; --surface-2: #F0F2F5;
+        --text: #1A1F36; --text-muted: #697386;
+        --accent: #635BFF; --accent-soft: rgba(99, 91, 255, 0.06);
+        --border: #E3E8EE; --border-strong: #C1C9D2;
+        --positive: #0DAC5C; --negative: #CD3D64; --warning: #F5A623;
+        --highlight: transparent;
+        --radius: 10px; --radius-lg: 14px;
+        --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 3px 10px rgba(0,0,0,0.03);
+        --heading-weight: 600; --heading-transform: none;
+        --label-transform: uppercase; --label-tracking: 0.04em;
+        --label-size: 0.72rem; --label-weight: 600;
+        --rule-weight: 1px; --spacing: 1.75rem;
+      }
+
+      body.brutalist {
+        --font-body: Georgia, 'Times New Roman', serif;
+        --font-heading: 'Arial Black', Impact, 'Helvetica Neue', Arial, sans-serif;
+        --font-mono: 'Courier New', Courier, monospace;
+        --font-label: 'Courier New', Courier, monospace;
+        --font-size: 17px; --line-height: 1.55; --max-width: 1000px;
+        --bg: #FFFFFF; --surface: #F0F0F0; --surface-2: #E4E4E4;
+        --text: #000000; --text-muted: #333333;
+        --accent: #000000; --accent-soft: rgba(0,0,0,0.05);
+        --border: #000000; --border-strong: #000000;
+        --positive: #000000; --negative: #000000; --warning: #000000;
+        --highlight: #2B5CFF;
+        --radius: 0; --radius-lg: 0; --shadow: none;
+        --heading-weight: 900; --heading-transform: uppercase;
+        --label-transform: uppercase; --label-tracking: 0.1em;
+        --label-size: 0.68rem; --label-weight: 400;
+        --rule-weight: 3px; --spacing: 2rem;
+      }
+
+      body.muji {
+        --font-body: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+        --font-heading: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+        --font-mono: Menlo, Monaco, monospace;
+        --font-label: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+        --font-size: 14px; --line-height: 1.9; --max-width: 720px;
+        --bg: #F9F7F4; --surface: #F2EFE9; --surface-2: #ECE9E2;
+        --text: #3D3D3D; --text-muted: #8A8A8A;
+        --accent: #C4593C; --accent-soft: rgba(196, 89, 60, 0.05);
+        --border: #DDD8D0; --border-strong: #C8C2B8;
+        --positive: #5A7A5A; --negative: #9B5A5A; --warning: #8B7A3A;
+        --highlight: transparent;
+        --radius: 2px; --radius-lg: 3px; --shadow: none;
+        --heading-weight: 400; --heading-transform: none;
+        --label-transform: normal; --label-tracking: 0.04em;
+        --label-size: 0.72rem; --label-weight: 400;
+        --rule-weight: 0.5px; --spacing: 3rem;
+      }
+
+      body.notion {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --font-mono: 'SFMono-Regular', Menlo, Consolas, monospace;
+        --font-label: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --font-size: 16px; --line-height: 1.6; --max-width: 920px;
+        --bg: #FFFFFF; --surface: #F7F6F3; --surface-2: #EFEEEA;
+        --text: #37352F; --text-muted: #787774;
+        --accent: #2EAADC; --accent-soft: rgba(46, 170, 220, 0.07);
+        --border: #E9E9E7; --border-strong: #DDDDD5;
+        --positive: #6BC07F; --negative: #E06A6A; --warning: #E9A84A;
+        --highlight: transparent;
+        --radius: 5px; --radius-lg: 8px; --shadow: none;
+        --heading-weight: 600; --heading-transform: none;
+        --label-transform: normal; --label-tracking: 0;
+        --label-size: 0.78rem; --label-weight: 600;
+        --rule-weight: 1px; --spacing: 1.5rem;
+      }
+
+      body.grayscale {
+        --font-body: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+        --font-heading: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+        --font-mono: 'SF Mono', Menlo, monospace;
+        --font-label: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+        --font-size: 15px; --line-height: 1.55; --max-width: 960px;
+        --bg: #FFFFFF; --surface: #F5F5F5; --surface-2: #EBEBEB;
+        --text: #1A1A1A; --text-muted: #666666;
+        --accent: #1A3C6E; --accent-soft: rgba(26, 60, 110, 0.05);
+        --border: #E0E0E0; --border-strong: #333333;
+        --positive: #1A3C6E; --negative: #8B0000; --warning: #8B6914;
+        --highlight: transparent;
+        --radius: 2px; --radius-lg: 4px; --shadow: none;
+        --heading-weight: 600; --heading-transform: none;
+        --label-transform: uppercase; --label-tracking: 0.06em;
+        --label-size: 0.7rem; --label-weight: 600;
+        --rule-weight: 1px; --spacing: 1.5rem;
+      }
+
+      body.glass {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        --font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        --font-mono: 'SF Mono', 'Fira Code', Consolas, monospace;
+        --font-label: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        --font-size: 15px; --line-height: 1.6; --max-width: 1020px;
+        --bg: #08080a;
+        --surface: rgba(255,255,255,0.04);
+        --surface-2: rgba(255,255,255,0.025);
+        --text: #E8E8ED; --text-muted: #707080;
+        --accent: #a0a0b8; --accent-soft: rgba(160, 160, 184, 0.06);
+        --border: rgba(255,255,255,0.07); --border-strong: rgba(255,255,255,0.14);
+        --positive: #6EE7B7; --negative: #FCA5A5; --warning: #FCD34D;
+        --highlight: transparent;
+        --radius: 14px; --radius-lg: 18px;
+        --shadow: 0 4px 24px rgba(0,0,0,0.3);
+        --heading-weight: 600; --heading-transform: none;
+        --label-transform: uppercase; --label-tracking: 0.04em;
+        --label-size: 0.7rem; --label-weight: 500;
+        --rule-weight: 1px; --spacing: 1.75rem;
+      }
+
+      /* ===================== BASE ===================== */
+
+      body {
+        font-family: var(--font-body);
+        font-size: var(--font-size);
+        color: var(--text);
+        background: var(--bg);
+        line-height: var(--line-height);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body.glass {
+        background: linear-gradient(160deg, #0a0a0e 0%, #0e0e14 40%, #0a0c10 70%, #080808 100%);
+        background-attachment: fixed;
+        min-height: 100vh;
+      }
+
+      .shell {
+        width: min(var(--max-width), calc(100vw - 48px));
+        margin: 0 auto;
+        padding: 56px 0 80px;
+      }
+
+      /* ===================== HERO ===================== */
+
+      .hero {
+        margin-bottom: var(--spacing);
+      }
+
+      .hero h1 {
+        font-family: var(--font-heading);
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: var(--heading-weight);
+        text-transform: var(--heading-transform);
+        letter-spacing: -0.025em;
+        line-height: 1.08;
+        margin-bottom: 10px;
+      }
+
+      body.swiss .hero h1 { font-size: clamp(2.5rem, 5.5vw, 4.5rem); letter-spacing: -0.035em; }
+      body.brutalist .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+      body.muji .hero h1 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); letter-spacing: 0.01em; }
+
+      .hero-sub {
+        color: var(--text-muted);
+        font-size: 1rem;
+        max-width: 55ch;
+        margin-bottom: 20px;
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 14px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--text-muted);
+        font-family: var(--font-label);
+        font-size: 0.76rem;
+        font-weight: 500;
+        border: 1px solid var(--border);
+      }
+      body.brutalist .chip { border-radius: 0; border-width: 2px; font-family: var(--font-mono); text-transform: uppercase; }
+
+      /* ===================== WINNER BANNER ===================== */
+
+      .winner-banner {
+        margin: var(--spacing) 0;
+        padding: 28px 32px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        align-items: start;
+      }
+
+      /* Rounded themes: no left-border, use top accent line inside */
+      body.stripe .winner-banner,
+      body.linear .winner-banner,
+      body.notion .winner-banner {
+        border-top: 2px solid var(--accent);
+      }
+      body.glass .winner-banner {
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border-color: var(--border-strong);
+      }
+      /* Flat themes: left-border works naturally */
+      body.manuscript .winner-banner,
+      body.muji .winner-banner {
+        background: transparent; border: none; box-shadow: none;
+        border-left: 3px solid var(--accent); padding: 0 0 0 24px;
+      }
+      body.swiss .winner-banner {
+        border: none; border-top: var(--rule-weight) solid var(--border-strong);
+        border-radius: 0; background: transparent; padding: 28px 0;
+      }
+      body.academic .winner-banner {
+        border-left: 3px solid var(--accent); border-radius: 0;
+      }
+      body.grayscale .winner-banner {
+        border-left: 3px solid var(--accent); border-radius: 0;
+      }
+      body.brutalist .winner-banner {
+        border-width: 3px; border-left-width: 6px;
+      }
+
+      .winner-banner h2 {
+        font-family: var(--font-heading);
+        font-size: 1.4rem;
+        font-weight: var(--heading-weight);
+        margin-bottom: 6px;
+      }
+      .winner-banner .winner-sub { color: var(--text-muted); font-size: 0.9rem; }
+      .winner-banner .winner-why {
+        margin-top: 12px; font-size: 0.92rem; line-height: 1.6;
+      }
+      .winner-badge {
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        background: var(--accent);
+        color: var(--bg);
+        white-space: nowrap;
+        align-self: start;
+      }
+      body.brutalist .winner-badge { border-radius: 0; background: var(--highlight); color: #fff; }
+
+      /* ===================== CONTEXT STRIP ===================== */
+
+      .context-strip {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: var(--spacing);
+      }
+      body.manuscript .context-strip,
+      body.muji .context-strip { grid-template-columns: 1fr; gap: var(--spacing); }
+
+      .ctx-section { }
+      .ctx-label {
+        font-family: var(--font-label);
+        font-size: var(--label-size);
+        font-weight: var(--label-weight);
+        text-transform: var(--label-transform);
+        letter-spacing: var(--label-tracking);
+        color: var(--text-muted);
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: var(--rule-weight) solid var(--border);
+      }
+      body.swiss .ctx-label {
+        border-bottom-width: var(--rule-weight);
+        border-bottom-color: var(--border-strong);
+      }
+
+      .ctx-item {
+        padding: 8px 0;
+        font-size: 0.9rem;
+        color: var(--text);
+        border-bottom: 1px solid var(--border);
+      }
+      .ctx-item:last-child { border-bottom: none; }
+
+      .ctx-q { font-weight: 600; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 3px; }
+      .ctx-a { font-size: 0.9rem; }
+
+      /* ===================== SCORES GRID ===================== */
+
+      .scores-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 12px;
+        margin: 20px 0;
+      }
+
+      .score-card {
+        padding: 16px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        text-align: center;
+      }
+      body.glass .score-card {
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      }
+      body.manuscript .score-card,
+      body.muji .score-card {
+        background: transparent; border: none; box-shadow: none;
+        border-bottom: var(--rule-weight) solid var(--border);
+        border-radius: 0; text-align: left; padding: 8px 0;
+      }
+      body.swiss .score-card {
+        background: transparent; border: none; border-top: var(--rule-weight) solid var(--border);
+        border-radius: 0; text-align: left; padding: 12px 0;
+      }
+      body.brutalist .score-card { border-width: 2px; }
+
+      .score-num {
+        font-family: var(--font-mono);
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--accent);
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      body.manuscript .score-num,
+      body.muji .score-num { font-size: 1.3rem; }
+      body.swiss .score-num { font-size: 2.2rem; }
+      body.brutalist .score-num { font-size: 2.5rem; }
+
+      .score-max {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: var(--text-muted);
+      }
+
+      .score-label {
+        font-family: var(--font-label);
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        text-transform: var(--label-transform);
+        letter-spacing: var(--label-tracking);
+      }
+
+      /* ===================== IDEA CARDS ===================== */
+
+      .idea-card {
+        margin-bottom: var(--spacing);
+        padding: 32px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+      }
+      body.glass .idea-card {
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      }
+      body.manuscript .idea-card,
+      body.muji .idea-card {
+        background: transparent; border: none; box-shadow: none;
+        border-top: var(--rule-weight) solid var(--border);
+        border-radius: 0; padding: var(--spacing) 0;
+      }
+      body.swiss .idea-card {
+        background: transparent; border: none; box-shadow: none;
+        border-top: var(--rule-weight) solid var(--border-strong);
+        border-radius: 0; padding: var(--spacing) 0;
+      }
+      body.brutalist .idea-card { border-width: 3px; }
+
+      .idea-card.winner { border-color: var(--accent); }
+      body.brutalist .idea-card.winner { background: var(--highlight); color: #fff; }
+      body.brutalist .idea-card.winner .idea-sub,
+      body.brutalist .idea-card.winner .score-label,
+      body.brutalist .idea-card.winner .score-max,
+      body.brutalist .idea-card.winner .section-label,
+      body.brutalist .idea-card.winner .prose-block h4,
+      body.brutalist .idea-card.winner .prose-block p,
+      body.brutalist .idea-card.winner .comp-table th,
+      body.brutalist .idea-card.winner .comp-table td,
+      body.brutalist .idea-card.winner .comp-type,
+      body.brutalist .idea-card.winner .risk-card strong,
+      body.brutalist .idea-card.winner .risk-card p,
+      body.brutalist .idea-card.winner .timeline-day,
+      body.brutalist .idea-card.winner .timeline-day strong,
+      body.brutalist .idea-card.winner .check-item,
+      body.brutalist .idea-card.winner .oss-card,
+      body.brutalist .idea-card.winner .oss-signal,
+      body.brutalist .idea-card.winner .gtm-main p,
+      body.brutalist .idea-card.winner .gtm-channel,
+      body.brutalist .idea-card.winner .text-muted { color: rgba(255,255,255,0.85); }
+      body.brutalist .idea-card.winner .score-num { color: #fff; }
+      body.brutalist .idea-card.winner .score-card,
+      body.brutalist .idea-card.winner .timeline-day,
+      body.brutalist .idea-card.winner .check-item,
+      body.brutalist .idea-card.winner .oss-card,
+      body.brutalist .idea-card.winner .risk-card { background: rgba(0,0,0,0.15); border-color: rgba(255,255,255,0.25); }
+      body.brutalist .idea-card.winner .comp-table th,
+      body.brutalist .idea-card.winner .comp-table td { border-color: rgba(255,255,255,0.25); }
+      body.brutalist .idea-card.winner .section-label { border-color: rgba(255,255,255,0.25); }
+      body.brutalist .idea-card.winner .badge { background: rgba(0,0,0,0.2); color: #fff; border-color: rgba(255,255,255,0.3); }
+      body.brutalist .idea-card.winner .check-box { border-color: rgba(255,255,255,0.6); }
+
+      .idea-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 16px;
+        margin-bottom: 8px;
+      }
+
+      .idea-header h3 {
+        font-family: var(--font-heading);
+        font-size: 1.35rem;
+        font-weight: var(--heading-weight);
+        text-transform: var(--heading-transform);
+        letter-spacing: -0.015em;
+      }
+      body.swiss .idea-header h3 { font-size: 1.8rem; letter-spacing: -0.025em; }
+      body.muji .idea-header h3 { font-size: 1.1rem; }
+
+      .idea-sub { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 20px; }
+
+      .badge {
+        padding: 5px 14px;
+        border-radius: 999px;
+        font-family: var(--font-label);
+        font-size: 0.73rem;
+        font-weight: 600;
+        white-space: nowrap;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+      }
+      .badge.winner { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+      body.brutalist .badge { border-radius: 0; border-width: 2px; font-family: var(--font-mono); text-transform: uppercase; }
+      body.brutalist .badge.winner { background: var(--highlight); color: #fff; border-color: var(--highlight); }
+
+      /* ===================== PROSE BLOCKS (2-col) ===================== */
+
+      .prose-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      body.manuscript .prose-grid,
+      body.muji .prose-grid { grid-template-columns: 1fr; gap: 16px; }
+
+      .prose-block {}
+      .prose-block h4 {
+        font-family: var(--font-label);
+        font-size: var(--label-size);
+        font-weight: var(--label-weight);
+        text-transform: var(--label-transform);
+        letter-spacing: var(--label-tracking);
+        color: var(--text-muted);
+        margin-bottom: 6px;
+      }
+      body.academic .prose-block h4 { font-style: italic; }
+      .prose-block p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      /* ===================== COMPETITORS TABLE ===================== */
+
+      .comp-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0;
+        font-size: 0.88rem;
+      }
+      .comp-table th {
+        font-family: var(--font-label);
+        font-size: var(--label-size);
+        font-weight: var(--label-weight);
+        text-transform: var(--label-transform);
+        letter-spacing: var(--label-tracking);
+        color: var(--text-muted);
+        text-align: left;
+        padding: 8px 12px;
+        border-bottom: var(--rule-weight) solid var(--border-strong);
+      }
+      body.swiss .comp-table th { border-bottom-width: var(--rule-weight); }
+      .comp-table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      .comp-table tr:last-child td { border-bottom: none; }
+      .comp-type {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--text-muted);
+        font-size: 0.72rem;
+        font-weight: 500;
+      }
+      body.brutalist .comp-type { border-radius: 0; }
+
+      /* ===================== CHECKLIST ===================== */
+
+      .checklist {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin: 12px 0;
+      }
+      body.manuscript .checklist,
+      body.muji .checklist { grid-template-columns: 1fr; }
+
+      .check-item {
+        display: flex;
+        align-items: start;
+        gap: 10px;
+        padding: 10px 14px;
+        background: var(--surface-2);
+        border-radius: var(--radius);
+        font-size: 0.88rem;
+      }
+      body.manuscript .check-item,
+      body.muji .check-item { background: transparent; padding: 6px 0; border-radius: 0; }
+      body.glass .check-item { background: var(--surface); }
+
+      .check-box {
+        flex-shrink: 0;
+        width: 18px; height: 18px;
+        border: 2px solid var(--border-strong);
+        border-radius: 3px;
+        margin-top: 1px;
+      }
+      body.brutalist .check-box { border-radius: 0; border-width: 2px; }
+
+      /* ===================== RISK ITEMS ===================== */
+
+      .risk-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 12px 0;
+      }
+      body.manuscript .risk-row,
+      body.muji .risk-row { grid-template-columns: 1fr; }
+
+      .risk-card {
+        padding: 14px 16px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+      }
+      /* Rounded themes: colored top line */
+      body.stripe .risk-card,
+      body.linear .risk-card,
+      body.notion .risk-card,
+      body.glass .risk-card {
+        border-top: 2px solid var(--negative);
+      }
+      /* Flat themes: left-border accent */
+      body.swiss .risk-card,
+      body.academic .risk-card,
+      body.grayscale .risk-card {
+        border-left: 3px solid var(--negative);
+      }
+      body.brutalist .risk-card { border-width: 2px; border-left-width: 4px; border-left-color: var(--negative); }
+      body.manuscript .risk-card,
+      body.muji .risk-card { border: none; border-left: 2px solid var(--negative); padding: 4px 0 4px 16px; border-radius: 0; }
+
+      .risk-card strong {
+        display: block;
+        font-size: 0.86rem;
+        font-weight: 600;
+        color: var(--negative);
+        margin-bottom: 4px;
+      }
+      .risk-card p {
+        font-size: 0.84rem;
+        color: var(--text-muted);
+      }
+
+      /* ===================== TIMELINE ===================== */
+
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 8px;
+        margin: 12px 0;
+      }
+
+      .timeline-day {
+        padding: 12px;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        font-size: 0.82rem;
+      }
+      body.glass .timeline-day { background: var(--surface); }
+      body.manuscript .timeline-day,
+      body.muji .timeline-day {
+        background: transparent; border: none; border-left: 2px solid var(--accent);
+        border-radius: 0; padding: 4px 0 4px 12px;
+      }
+      body.swiss .timeline-day,
+      body.academic .timeline-day,
+      body.grayscale .timeline-day {
+        border-top: 2px solid var(--accent); border-radius: 0;
+        background: var(--surface);
+      }
+
+      .timeline-day strong {
+        display: block;
+        font-family: var(--font-label);
+        font-size: 0.72rem;
+        color: var(--accent);
+        font-weight: 700;
+        margin-bottom: 4px;
+        text-transform: var(--label-transform);
+        letter-spacing: var(--label-tracking);
+      }
+
+      /* ===================== GTM ===================== */
+
+      .gtm-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+        margin: 12px 0;
+      }
+      body.manuscript .gtm-grid,
+      body.muji .gtm-grid { grid-template-columns: 1fr; }
+
+      .gtm-main p { font-size: 0.9rem; margin-bottom: 8px; }
+
+      .gtm-channels {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .gtm-channel {
+        padding: 4px 12px;
+        background: var(--accent-soft);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-size: 0.78rem;
+        color: var(--text-muted);
+      }
+      body.brutalist .gtm-channel { border-radius: 0; border-width: 2px; font-family: var(--font-mono); text-transform: uppercase; }
+
+      /* ===================== SECTION DIVIDER ===================== */
+
+      .section-label {
+        font-family: var(--font-label);
+        font-size: var(--label-size);
+        font-weight: var(--label-weight);
+        text-transform: var(--label-transform);
+        letter-spacing: var(--label-tracking);
+        color: var(--text-muted);
+        margin: 24px 0 10px;
+        padding-bottom: 6px;
+        border-bottom: var(--rule-weight) solid var(--border);
+      }
+      body.swiss .section-label { border-bottom-color: var(--border-strong); }
+
+      /* ===================== OSS ===================== */
+
+      .oss-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin: 12px 0;
+      }
+      body.manuscript .oss-grid,
+      body.muji .oss-grid { grid-template-columns: 1fr; }
+
+      .oss-card {
+        padding: 12px 16px;
+        background: var(--surface-2);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+      }
+      body.manuscript .oss-card,
+      body.muji .oss-card {
+        background: transparent; border: none;
+        border-bottom: var(--rule-weight) solid var(--border);
+        border-radius: 0; padding: 8px 0;
+      }
+      body.glass .oss-card { background: var(--surface); }
+
+      .oss-card strong { font-size: 0.88rem; }
+      .oss-card .oss-signal {
+        font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;
+      }
+
+      /* ===================== FOOTER ===================== */
+
+      .footer {
+        margin-top: 56px;
+        padding-top: 16px;
+        border-top: var(--rule-weight) solid var(--border);
+        color: var(--text-muted);
+        font-size: 0.76rem;
+        text-align: center;
+      }
+      .footer span { color: var(--accent); font-weight: 500; }
+
+      /* ===================== RESPONSIVE ===================== */
+
+      @media (max-width: 768px) {
+        .context-strip,
+        .prose-grid,
+        .checklist,
+        .risk-row,
+        .oss-grid,
+        .gtm-grid { grid-template-columns: 1fr; }
+        .timeline { grid-template-columns: 1fr; }
+        .winner-banner { grid-template-columns: 1fr; }
+        .shell { padding: 28px 0 48px; }
+        .idea-card { padding: 20px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <h1 id="report-title"></h1>
+        <p class="hero-sub" id="report-subtitle"></p>
+        <div class="hero-meta" id="hero-meta"></div>
+      </section>
+
+      <section class="winner-banner" id="winner-banner" style="display:none">
+        <div>
+          <h2 id="winner-name"></h2>
+          <div class="winner-sub" id="winner-sub"></div>
+          <div class="winner-why" id="winner-why"></div>
+        </div>
+        <span class="winner-badge">Recommended</span>
+      </section>
+
+      <section class="context-strip">
+        <div class="ctx-section">
+          <div class="ctx-label">Context</div>
+          <div id="context-summary"></div>
+        </div>
+        <div class="ctx-section">
+          <div class="ctx-label">Key Answers</div>
+          <div id="clarifying-answers"></div>
+        </div>
+      </section>
+
+      <div id="ideas"></div>
+
+      <p class="footer">
+        Generated by <a href="https://solana.new" target="_blank" rel="noreferrer" style="color:var(--accent);text-decoration:none;font-weight:500">solana.new</a>
+      </p>
+    </main>
+
+    <script>
+      var D = {"report_type": "shortlist", "theme": "glass", "title": "10 product ideas on the StonkFun developer platform: x402, agentic commerce, and cross-sector gaps", "generated_at": "2026-09-06", "recommended_winner": "stonkfun-agent-gateway", "user_context": {"prompt": "Run solana.new for product ideas around stonkfun.xyz (developers page). Create 10 ideas we can evaluate. Interested in x402 and agentic commerce ideas, plus anything that meets market needs across different sectors.", "summary": ["Founder edge (carried from the 2026-09-01 and 2026-09-05 sessions): live x402 payment infra already built (solenrich, cardex), fast shipping on Next.js + Solana, agent tooling experience, Farcaster and Solana distribution. Missing: a trading or launchpad audience, and no on-chain program experience in production.", "WHAT STONKFUN IS (fetched 2026-09-06). A non-custodial launchpad on Solana where every coin is priced against a quote asset instead of SOL: 26 xStocks (SPYX, NVDAX, TSLAX, GLDX...), Backpack pre-stocks (MU, SNDK, DRAM, ROBOSTRATEGY), the ANTHROPIC pre-stock, currencies (USDC, EURC, USDT, ONYC), the xSOL leverage token, and ~300 custom meme pairs. 349 launchable pairs today. Launches go through Raydium LaunchLab (0.03 SOL deploy) into CPMM pools.", "PLATFORM NUMBERS (GET /stats, 2026-09-06): 8,166 tokens, 666 graduated ($40k mcap bar), 5,615 reward-mode launches (69% of all launches), $254M total market cap, $45M 24h volume, $1.95M lifetime platform revenue, $1.14M STONK buybacks, 27,079 burns.", "DEVELOPER API. Plain HTTP at /api/public/v1, OpenAPI spec published, no API key, no signup. Two-call launch (prepare -> sign locally -> submit), fee claims, and 12 read endpoints (tokens, fees, rewards, airdrop, backing, burns, launches ledger, pairs, launchlab pricing, revenue history, stats). Rate limits 300/min per IP (25/min for prepare). NO webhooks and NO streaming: everything is polling. Standard mode: creator earns 0.5% of every trade (1.5% on the 2% tier). Reward mode: a 1% or 3% Token-2022 transfer tax is auto-paid to all holders in the quote token (e.g. holders of a NVDAX-paired coin receive NVDAX). Airdrop feature carves up to 50% of supply to top100..top5000 holders of the quote token. Self-built LaunchLab launches are 'adopted' only if every curve parameter matches; a typo in transferFeeBasePoints or maxinumFee silently creates a zero-rate tax.", "x402 ON SOLANA (Sept 2026): Solana overtook Base in x402 tx count and volume on 2026-09-03, now >90% of weekly x402 transactions, 37M+ txs, 70% of monthly volume. Global x402: ~200M txs, ~$50B volume, ~150k merchant endpoints. Most payments are under $0.50 and >99.99% USDC. PayAI/BlockRun settled 5.4M agent payments in one week. This is the rail every idea below monetizes on.", "TOKENIZED STOCKS: Solana did $5.8B spot DEX volume in tokenized equities in Q2 2026 (+114% QoQ), daily ATH $683M, cumulative >$10B, 96% of all tokenized stock trades across chains. PreStocks >$750M cumulative. Backpack listed SpaceX via Sunrise on IPO day. StonkFun is the only launchpad that lets a coin be priced in these assets.", "AGENT ACTIVITY: automated agents are the majority of Solana DEX volume and >70% on peak launch days. ~65% of agentic AI payments run on Solana. Virtuals (Base) has launched ~14,000 agent tokens and its Agent Commerce Protocol handles agent-to-agent escrow; there is no Solana-native equivalent that pairs agent tokens with real assets.", "COMPETITIVE LANDSCAPE: bags.fm (Meteora DBC, 1% fee share to royalty recipients, developer API at dev.bags.fm, a published Claude Code skill, JackBuilds shipped 35 tools from the Bags hackathon), pump.fun (API, largest volume), FeeSweep (creator fee command center across Bags and Pump.fun; does not cover StonkFun), SolMachina (x402 token-risk API at $0.001-$0.10 per call on Base and Solana), Helius webhooks (generic on-chain events, not StonkFun-aware). Nobody has built agent tooling, event streams, or analytics specific to StonkFun's quote-pair and reward-tax model.", "HOW TO READ THE SCORES: 0-3 per dimension, founder fit weighs most, then MVP speed, distribution, market pull, revenue. Integration-first: 8 of 10 ideas need no new on-chain program. Ideas #9 (fee-stream market) and #10 (index vault) need custom programs and are marked as such."], "clarifying_answers": [{"question": "What breaks if the blockchain is removed?", "answer": "For the gateway, preflight, events, and analytics ideas: nothing about the data layer, but everything about payment and access. StonkFun has no API keys, so the only way for an anonymous agent to pay for a premium call is a wallet signature (x402). For fee-stream and index ideas: the fee positions and reward taxes are on-chain state, so the product cannot exist off-chain."}, {"question": "Why hasn't StonkFun built these itself?", "answer": "They are a two-person-scale team that spent the last month on the LaunchLab program integration (per their X updates). Their roadmap is the core launch flow and STONK buybacks. Agent tooling, webhooks, analytics, and creator finance are the classic third-party layer around a launchpad, the same way JackBuilds, FeeSweep and Trojan grew around Bags and Pump."}, {"question": "What is the assumed founder edge?", "answer": "Working x402 server and client code, Solana + Next.js speed, and an existing agent-payments mental model. No launchpad audience yet. Ideas that sell to agent builders and to StonkFun's own creator community score higher on distribution than ideas that need retail traders."}, {"question": "Report theme?", "answer": "Glass, matching the previous two reports in this folder."}]}, "ideas": [{"slug": "stonkfun-agent-gateway", "name": "StonkFun Agent Gateway: MCP server + x402 orchestration API", "rank": 1, "status": "winner", "sector": "Agent infrastructure / agentic commerce", "one_liner": "One paid call that lets any AI agent launch a coin paired with any asset, dev-buy, claim fees, and poll status, exposed as an MCP server, a Claude Code skill, and x402 endpoints listed in the bazaar.", "why_it_wins": "Best founder fit (reuses the x402 stack), fastest MVP (StonkFun's API is open and documented, so week one is orchestration and packaging), obvious first users (agent builders already shipping Bags tools, and StonkFun's Telegram), and it is the natural home for the two runner-up ideas as paid endpoints. StonkFun is agent-ready (no API key) but not agent-native: there is no MCP, no skill, no idempotent prepare->sign->submit->poll->claim wrapper, and no wallet-funding path for an agent that holds USDC but not SOL.", "why_crypto_is_necessary": "The customer is an anonymous agent with a wallet. It cannot sign up for a Stripe account. x402 is the only way to charge it per call, and the launch itself is a non-custodial on-chain action that the agent's key must sign. The gateway also fronts the 0.03 SOL deploy fee and gets repaid in USDC over x402, which is programmable money doing work Stripe cannot.", "kill_this_idea": "If agents keep calling StonkFun's free API directly and nobody pays for orchestration, the product is a thin wrapper. Kill if fewer than 50 paid launches or 1,000 paid calls in the first 30 days after the bazaar listing.", "why_not_web2": "A Web2 SaaS needs accounts, KYC, and card billing for machine customers that have none. x402 + wallet signatures give per-call billing and authorization with zero onboarding, which is exactly StonkFun's own design philosophy extended one layer up.", "integration_note": "Integration only. Wraps /launches/prepare, /launches/submit, /launches/{sig}, /tokens/{mint}/fees/claim/*, and reads. Uses the existing x402 server (solenrich/cardex) and the PayAI or CDP facilitator on Solana.", "scores": {"founder_fit": 3, "mvp_speed": 3, "distribution_clarity": 2, "market_pull": 2, "revenue_path": 2}, "competitors": [{"name": "Bags Claude Code skill (SkillKit) + dev.bags.fm API", "type": "adjacent", "signal": "published skill, hackathon produced 35 tools (JackBuilds)", "why_they_have_not_won": "Bags only; no quote-pair concept, no xStock pairing, no x402 billing"}, {"name": "Virtuals Agent Commerce Protocol", "type": "substitute", "signal": "~14,000 agent tokens launched, escrowed agent-to-agent commerce on Base", "why_they_have_not_won": "Base-only, agent tokens paired with VIRTUAL, not with real assets; no Solana presence"}, {"name": "pump.fun / PumpPortal APIs", "type": "substitute", "signal": "largest launch volume, mature bot ecosystem", "why_they_have_not_won": "SOL-paired only; no reward tax, no xStock pairs, no holder airdrop targeting"}], "oss_landscape": [{"name": "coinbase/x402 + x402-solana packages", "signal": "active, v2 protocol, Solana facilitators (PayAI, CDP)", "notes": "drop-in server middleware; already used in the founder's stack"}, {"name": "StonkFun OpenAPI spec (/api/public/v1/openapi.json)", "signal": "published, typed", "notes": "generate the MCP tool schema directly from it in an afternoon"}, {"name": "raydium-io/raydium-sdk-v2", "signal": "active", "notes": "needed only for the self-built LaunchLab path in a later phase"}], "mvp_checklist": ["Day 1-2: generate a typed client from the OpenAPI spec; build launch(), claimFees(), status() as one idempotent orchestration each (handle 409 conflict and 503 charged:false correctly).", "Day 3: expose as an MCP server (stdio + HTTP) and as a Claude Code / OpenClaw skill file.", "Day 4-5: put the write endpoints behind x402 (USDC on Solana): $1 per prepared launch, $0.10 per claim orchestration, reads free.", "Day 6: add 'fund my agent' flow: agent pays USDC via x402, gateway sends the SOL deploy fee + optional dev-buy SOL to the agent's wallet before the launch.", "Day 7: list in the x402 bazaar, publish the skill, post in StonkFun Telegram and @launchonsf replies; ship a demo agent that launches a coin paired with NVDAX from one prompt."], "gtm": {"wedge": "Launch a coin paired with NVDAX from one prompt. No key, no signup, pay per call in USDC.", "first_ten_users": "Builders who shipped Bags tools (JackBuilds and Bags hackathon entrants), OpenClaw / ElizaOS agent operators on Solana, the StonkFun Telegram power creators, two or three agent framework maintainers who want a real-asset launch tool", "channels": ["x402 bazaar listing", "SkillKit / Claude Code skill directory", "StonkFun Telegram and @launchonsf", "Colosseum Cypherpunk (kickoff Sep 26) and CLOCK IN (Sep 8 - Oct 8)", "Solana x402 ecosystem page submission"], "message_angle": "StonkFun for agents: one call to launch, one call to get paid."}, "risks": [{"risk": "The free API makes the paid layer feel optional", "mitigation": "Charge for what the free API cannot do: SOL fronting, idempotent orchestration, webhooks (idea #6), preflight (idea #2). Keep raw reads free."}, {"risk": "StonkFun ships its own MCP", "mitigation": "Move fast, become the listed skill first, and offer to hand it to them as the official one in exchange for a fee-share or platform pairing."}, {"risk": "Agents launch abusive or scam coins through the gateway", "mitigation": "Rate limits per payer wallet, name/symbol screening, and public attribution of every launch to the paying wallet in the gateway's own ledger."}], "validation_sprint": [{"day": 1, "task": "DM five Solana agent builders with the one-prompt NVDAX launch demo video; ask what they would pay per launch."}, {"day": 2, "task": "Post in StonkFun Telegram: 'who wants an MCP for this?'; count replies."}, {"day": 3, "task": "Ship the MCP read-only tools and measure installs for 48h."}, {"day": 5, "task": "Turn on x402 on the prepare endpoint; watch for the first paid call from a wallet you do not control."}, {"day": 7, "task": "Decide: >10 unique paying wallets = continue; otherwise fold into idea #2 as a free feature."}]}, {"slug": "launch-preflight-reward-risk-api", "name": "Launch Preflight + Reward-Coin Risk API (x402)", "rank": 2, "status": "runner-up", "sector": "Developer tools / risk data", "one_liner": "A paid endpoint that validates a self-built LaunchLab launch against StonkFun's pricing rules before broadcast, and scores any live reward coin for whether its transfer tax is real, adopted, and paying holders.", "why_it_wins": "Runner-up, not winner, only because it is a feature-sized product. It solves a documented, painful, silent failure: StonkFun's docs warn that a mismatched curve parameter or a typo in the transfer-fee fields creates a launch that is never adopted, so fees forward to nobody and the tax accrues to nobody. On the read side, 5,615 reward launches exist and no tool tells a buyer whether a coin's reward flywheel is active. SolMachina proves people pay $0.001-$0.10 per x402 risk call.", "why_crypto_is_necessary": "The checks read on-chain mint extensions, pool accounts, and adoption state; the buyers are trading bots and launch agents paying per call with a wallet. Both halves are on-chain state consumed by wallet-holding machines.", "kill_this_idea": "If StonkFun adds a validate endpoint to the free API, the preflight half dies overnight; the reward-risk half survives only if bots actually route trades based on it. Kill if fewer than 500 paid calls in 30 days.", "why_not_web2": "Callers are anonymous bots that will not create accounts, and the data is on-chain. A free web page could exist, but the revenue is per-call machine payments.", "integration_note": "Integration only. Reads GET /launchlab/pricing, GET /tokens/{mint}, GET /tokens/{mint}/rewards, plus Token-2022 mint extension state via RPC (Helius DAS).", "scores": {"founder_fit": 3, "mvp_speed": 3, "distribution_clarity": 2, "market_pull": 2, "revenue_path": 2}, "competitors": [{"name": "SolMachina (x402 token risk API)", "type": "direct", "signal": "live on x402-list, $0.001-$0.10 per call, checks Token-2022 dangerous extensions", "why_they_have_not_won": "generic; does not know StonkFun adoption rules, reward flywheel status, or LaunchLab curve matching"}, {"name": "RugCheck / GoPlus", "type": "substitute", "signal": "default risk check in most Telegram bots", "why_they_have_not_won": "flag transfer fees as a red flag instead of scoring whether the reward is legitimate and paying"}], "oss_landscape": [{"name": "solana-program/token-2022 (spl-token JS)", "signal": "stable", "notes": "getTransferFeeConfig reads the tax rate and withheld amounts directly"}, {"name": "StonkFun GET /launchlab/pricing", "signal": "published parameters", "notes": "the exact reference to diff a candidate transaction against"}], "mvp_checklist": ["Day 1: reward-risk read endpoint: tax bps, maxinumFee, adoption (launchpad field), rewards distributed to date, flywheel.active, top-holder concentration; return a 0-100 score.", "Day 2: preflight endpoint: accept an unsigned LaunchLab transaction, decode, diff against /launchlab/pricing, list every mismatch with the fix.", "Day 3: x402 pricing ($0.005 per risk call, $0.25 per preflight), bazaar listing, free web page for humans.", "Day 4: publish as a tool in idea #1's MCP; offer a free tier to Trojan/BonkBot-style bot devs."], "gtm": {"wedge": "Do not broadcast a dead launch. Do not buy a reward coin that pays nobody.", "first_ten_users": "Self-build launchers in StonkFun Telegram, three Solana Telegram-bot teams, agent operators who trade reward coins", "channels": ["x402 bazaar", "StonkFun Telegram", "Solana bot developer chats", "x402-list.com"], "message_angle": "The only risk API that understands quote pairs and reward taxes."}, "risks": [{"risk": "Feature, not company", "mitigation": "Ship as the first paid tool inside idea #1; it earns while proving the x402 funnel."}, {"risk": "Low willingness to pay per call", "mitigation": "Price at $0.005 and go for volume from bots; sell a flat monthly x402 pass for heavy callers."}], "validation_sprint": [{"day": 1, "task": "Scan all 5,615 reward launches; publish the count with zero-rate or unadopted taxes as a thread."}, {"day": 3, "task": "Ship the read endpoint behind x402; DM the thread to five bot teams."}, {"day": 7, "task": "Continue if >3 distinct bot wallets are calling daily."}]}, {"slug": "reward-yield-screener", "name": "Reward Yield Screener: 'dividend APR' for quote-paired coins", "rank": 3, "status": "runner-up", "sector": "Analytics / trading data", "one_liner": "The first screener that computes holder yield for StonkFun reward coins (transfer tax paid in NVDAX, SPYX, USDC...) as an APR, plus quote-exposure and fee-earnings leaderboards, with a free web UI and an x402 data API for agents.", "why_it_wins": "Third because the buyer is a trader, which is not the founder's audience, but the metric gap is real: 69% of StonkFun launches are reward coins whose holders receive real assets, and no dashboard turns 'rewards distributed / market cap' into a yield number. Yield is what makes the asset-paired model legible to non-degens.", "why_crypto_is_necessary": "Every input (distributions, holder counts, tax rate, quote price) is on-chain and the reward itself is programmable money. Agents consume the API by paying per call.", "kill_this_idea": "If Birdeye or DexScreener add a 'holder yield' column, the screener is a feature of theirs. Kill if under 300 weekly active users after the first month.", "why_not_web2": "A Web2 screener is possible for humans, but the API half (machine payments, no accounts) and the data source are only on-chain.", "integration_note": "Integration only. GET /tokens, /tokens/{mint}/rewards, /rewards, /revenue/history, plus Jupiter price API for quote assets.", "scores": {"founder_fit": 2, "mvp_speed": 3, "distribution_clarity": 2, "market_pull": 2, "revenue_path": 2}, "competitors": [{"name": "DexScreener / Birdeye", "type": "substitute", "signal": "default price pages for every StonkFun token", "why_they_have_not_won": "no reward-yield or quote-exposure concept; they show price in SOL/USD only"}, {"name": "StonkFun's own token pages", "type": "direct", "signal": "charts, volume, fee distribution per token", "why_they_have_not_won": "per-token, no cross-token screener or APR ranking"}], "oss_landscape": [{"name": "Jupiter Price API v3", "signal": "active", "notes": "prices for xStocks and quote assets"}, {"name": "TanStack Table + Recharts", "signal": "stable", "notes": "screener UI in a day"}], "mvp_checklist": ["Day 1-2: ingest /tokens + /rewards nightly into Postgres; compute trailing 7d and 30d holder yield per coin.", "Day 3: screener UI: sort by yield, quote asset, holders, age; quote-exposure explainer.", "Day 4: x402 JSON endpoints for the same data; bazaar listing.", "Day 5: weekly 'top reward coins' thread automation."], "gtm": {"wedge": "Which meme pays you the most NVDAX per week?", "first_ten_users": "StonkFun Telegram members, reward-coin creators who want a leaderboard to share, two Solana CT analysts", "channels": ["X threads with the weekly leaderboard", "StonkFun Telegram", "x402 bazaar", "Dune-style embeds"], "message_angle": "Yield, not vibes."}, "risks": [{"risk": "Yields are volume-driven and collapse when a coin dies", "mitigation": "Show trailing windows and a survival flag; never annualize a single day."}], "validation_sprint": [{"day": 1, "task": "Hand-compute yield for the top 20 reward coins and post it; measure engagement."}, {"day": 4, "task": "Ship the screener; track returning visitors."}, {"day": 7, "task": "Continue if the thread gets reshared by StonkFun or a creator."}]}, {"slug": "autonomous-launch-agent", "name": "Autonomous Launch Agent: news-to-coin on xStock pairs", "rank": 4, "status": "shortlisted", "sector": "AI agents / consumer speculation", "one_liner": "An agent that watches earnings, IPO, and macro events, launches a reward-mode coin paired with the relevant xStock or pre-stock (NVDAX on earnings night, the SpaceX pair on IPO day), seeds it with a dev buy, and pays its own token holders from the creator fee.", "why_it_wins": "Not the winner. Highest market pull on paper (agents already dominate launch-day volume and Virtuals proved agent tokens sell), but it is a speculation product that the founder would have to operate, with real reputational and regulatory exposure. It also ships as a customer of idea #1 rather than a product of its own.", "why_crypto_is_necessary": "The agent's revenue is an on-chain creator fee position it owns; its holders are paid by a token-level transfer tax. Nothing here has a Web2 equivalent.", "kill_this_idea": "If the coins it launches consistently rug or die in hours, the agent is a pump machine with your name on it. Kill if the first five launches average under 48 hours of trading or draw complaints.", "why_not_web2": "There is no off-chain way for a program to own a revenue-bearing asset it created without a legal entity.", "integration_note": "Integration only, built on idea #1 plus a news feed and a Jupiter swap for the dev buy.", "scores": {"founder_fit": 2, "mvp_speed": 2, "distribution_clarity": 2, "market_pull": 3, "revenue_path": 2}, "competitors": [{"name": "Virtuals agents (Base)", "type": "direct", "signal": "~14,000 agent tokens", "why_they_have_not_won": "no real-asset pairs, no Solana"}, {"name": "Clanker / Bankr-style launch bots", "type": "direct", "signal": "prompt-to-token on Base and Solana", "why_they_have_not_won": "SOL/ETH pairs only; no reward tax or xStock pairing"}], "oss_landscape": [{"name": "elizaOS / OpenClaw", "signal": "active agent frameworks with Solana plugins", "notes": "host the agent loop; add the gateway MCP"}], "mvp_checklist": ["Week 1: event feed (earnings calendar + IPO calendar), launch policy, one launch per event with a fixed dev buy.", "Week 2: public dashboard of every launch, fee earned, and holder payouts; the agent's own STONK-paired token last, if ever."], "gtm": {"wedge": "The agent that launches the NVDA earnings coin before you can type it.", "first_ten_users": "StonkFun degens, agent-token traders migrating from Virtuals", "channels": ["X", "StonkFun Telegram", "agent-token communities"], "message_angle": "Real assets, real fees, real payouts."}, "risks": [{"risk": "Securities and market-manipulation optics", "mitigation": "No promises of returns, no coordinated selling, full public ledger. Or do not build it."}], "validation_sprint": [{"day": 1, "task": "Run one manual 'event coin' with the gateway and log the outcome honestly."}, {"day": 7, "task": "Decide based on trading survival and community reaction."}]}, {"slug": "creator-revenue-ops", "name": "Creator Revenue Ops: multi-launchpad fee sweeping with agent payouts", "rank": 5, "status": "shortlisted", "sector": "Creator finance / B2B ops", "one_liner": "A console and cron agent for launch studios that claims creator fees across StonkFun, Bags, and Pump, converts to USDC, and pays contributors, KOLs, and AI agents by split rules, including x402-paid services the studio uses.", "why_it_wins": "Not the winner. Validated by FeeSweep (exists for Bags and Pump, not StonkFun) but that also means the wedge is a coverage gap, not a new product. Distribution is fine (studios are reachable), founder fit is medium.", "why_crypto_is_necessary": "Fees are on-chain positions that must be claimed by the creator's key; payouts to anonymous contributors and agents settle in USDC without accounts.", "kill_this_idea": "FeeSweep adds StonkFun in a weekend. Kill if a comparable tool covers StonkFun before you have 20 paying studios.", "why_not_web2": "Claims require wallet signatures and payouts go to wallets; no bank rails involved.", "integration_note": "Integration only. GET /launches?creator=, /tokens/{mint}/fees, claim prepare/submit; Bags and Pump claim APIs; Jupiter for conversion; Squads or a simple splitter for payouts.", "scores": {"founder_fit": 2, "mvp_speed": 2, "distribution_clarity": 2, "market_pull": 2, "revenue_path": 2}, "competitors": [{"name": "FeeSweep", "type": "direct", "signal": "live, covers Bags + Pump.fun", "why_they_have_not_won": "no StonkFun, no splits, no agent payouts"}, {"name": "Bags fee-share config", "type": "substitute", "signal": "native royalty recipients", "why_they_have_not_won": "Bags-only; StonkFun has a single creator fee position"}], "oss_landscape": [{"name": "Squads v4 / Streamflow", "signal": "active", "notes": "treasury and streaming payouts"}], "mvp_checklist": ["Week 1: StonkFun portfolio sweep (per quote token, per the legacy vault rule), Bags and Pump connectors, USDC conversion.", "Week 2: split rules, scheduled runs, x402 payout to agent services, 1% fee on swept value."], "gtm": {"wedge": "Every fee you are owed, on every launchpad, paid out by rule.", "first_ten_users": "Launch studios and KOL groups running 5+ tokens across launchpads", "channels": ["Telegram launch studios", "X", "StonkFun and Bags communities"], "message_angle": "Stop leaving fees unclaimed."}, "risks": [{"risk": "Thin margins on small creators", "mitigation": "Target studios; charge a percentage of swept value."}], "validation_sprint": [{"day": 1, "task": "Scan the /launches ledger for creators with unclaimed fees; DM the top 20."}, {"day": 7, "task": "Continue if 5 agree to connect a wallet."}]}, {"slug": "stonkfun-events-webhooks", "name": "StonkFun Events: webhooks, streams, and alerts as a service", "rank": 6, "status": "shortlisted", "sector": "Infrastructure / notifications", "one_liner": "The missing push layer for a polling-only API: webhooks and WebSocket streams for new launches on a given quote asset, graduation, reward distributions, fee accrual, and buybacks, plus Telegram and X alert bots; agents subscribe by paying per event over x402.", "why_it_wins": "Not the winner. It fills a confirmed gap (the OpenAPI spec exposes no webhooks or streaming) and is a fast build, but per-event revenue is small and Helius webhooks are a partial substitute. Best shipped as the subscription feature of idea #1.", "why_crypto_is_necessary": "Subscribers are agents paying per event with wallets; the events are on-chain.", "kill_this_idea": "StonkFun adds webhooks, or agents are fine with 300 polls per minute. Kill if fewer than 20 paying subscriber wallets in 30 days.", "why_not_web2": "A Web2 alert SaaS works for humans; the machine subscribers pay per event without accounts.", "integration_note": "Integration only. Poll /tokens, /launches, /rewards, /revenue at the rate limit; Helius webhooks on the LaunchLab program for lower latency.", "scores": {"founder_fit": 2, "mvp_speed": 3, "distribution_clarity": 2, "market_pull": 2, "revenue_path": 1}, "competitors": [{"name": "Helius webhooks", "type": "substitute", "signal": "generic program-level events", "why_they_have_not_won": "not StonkFun-aware: no graduation, reward, or quote-pair semantics"}], "oss_landscape": [{"name": "Helius SDK", "signal": "active", "notes": "program event source"}], "mvp_checklist": ["Day 1-3: poller + event diff + webhook delivery; Day 4: Telegram alert bot per quote asset; Day 5: x402 per-event billing."], "gtm": {"wedge": "Know the second a coin pairs with your stock.", "first_ten_users": "Agent operators, StonkFun Telegram, xStock communities", "channels": ["x402 bazaar", "Telegram", "X"], "message_angle": "Push, not poll."}, "risks": [{"risk": "Low willingness to pay", "mitigation": "Free Telegram alerts as distribution; charge only machine subscribers."}], "validation_sprint": [{"day": 1, "task": "Launch a free 'new NVDAX-paired coin' Telegram channel; measure joins."}, {"day": 7, "task": "Continue if >200 members."}]}, {"slug": "holder-cohort-acquisition", "name": "Holder Cohort Acquisition: airdrop-targeted launches for brands and projects", "rank": 7, "status": "shortlisted", "sector": "Growth / marketing tools", "one_liner": "A B2B tool that turns StonkFun's airdrop feature into customer acquisition: pick a quote-asset cohort (top 5,000 TSLAX holders, top 100 JUP holders), preview the snapshot, launch a coin that drops up to 50% of supply to them, and track activation, with an x402 endpoint that sells cohort snapshots to agents.", "why_it_wins": "Not the winner. Distinct sector and a real on-chain primitive (frozen holder snapshot, exchange wallets excluded), but the buyer (project marketers) is hard to reach from the founder's network and the outcome metric (activation) is unproven.", "why_crypto_is_necessary": "The cohort is defined by on-chain holdings, the drop settles at launch, and the recipients are wallets. A Web2 ad network cannot target 'holds TSLAX' or deliver an asset.", "kill_this_idea": "If airdropped holders dump instantly and never engage, the cohort has no value. Kill if the first three campaigns show under 5% of recipients making any second interaction.", "why_not_web2": "Targeting by wallet holdings and delivering value into the wallet is not possible off-chain.", "integration_note": "Integration only. /launches/prepare with airdropPercent/airdropTier/airdropSource, /tokens/{mint}/airdrop for results, Helius DAS for holder analytics.", "scores": {"founder_fit": 2, "mvp_speed": 2, "distribution_clarity": 1, "market_pull": 1, "revenue_path": 2}, "competitors": [{"name": "Galxe / Layer3 quests", "type": "substitute", "signal": "large quest platforms", "why_they_have_not_won": "no holder-cohort launch primitive; they reward tasks, not existing positions"}, {"name": "Bags (creator launches)", "type": "adjacent", "signal": "creator monetization", "why_they_have_not_won": "no airdrop-by-quote-holder feature"}], "oss_landscape": [{"name": "Helius DAS + getTokenLargestAccounts", "signal": "stable", "notes": "cohort preview and post-drop tracking"}], "mvp_checklist": ["Week 1: cohort previewer (size, concentration, exchange exclusion) and one-click launch with airdrop; activation dashboard.", "Week 2: x402 endpoint that sells cohort snapshots and post-drop retention stats."], "gtm": {"wedge": "Acquire the holders you actually want, at launch, for the cost of supply.", "first_ten_users": "Solana projects launching community tokens, two xStock-aligned communities, agent projects that want early holders", "channels": ["Superteam and founder chats", "StonkFun Telegram", "X"], "message_angle": "Targeting by what people hold, not what they click."}, "risks": [{"risk": "Airdrop recipients are mercenary", "mitigation": "Prefer small tiers (top100) with a follow-up reward-mode tax that pays them to hold."}], "validation_sprint": [{"day": 1, "task": "Ask ten project founders whether they would pay $200 for a targeted holder drop."}, {"day": 7, "task": "Run one campaign for a friendly project and publish results."}]}, {"slug": "pair-aware-trading-bot", "name": "Pair-Aware Trading Bot: Telegram bot that understands quote exposure", "rank": 8, "status": "shortlisted", "sector": "Trading tools / consumer", "one_liner": "A Telegram or Seeker trading bot built for coins priced in xStocks and reward taxes: USD quotes, correct slippage for Token-2022 taxed transfers, 'you hold NVDA + meme' exposure breakdowns, and auto-claim of holder rewards.", "why_it_wins": "Not the winner. Revenue path is the strongest of the ten (bots charge 0.5-1% per trade and users pay it), but the founder has no trading audience, the incumbents are entrenched, and building a safe trading bot is a multi-week effort.", "why_crypto_is_necessary": "Trades, taxes, and rewards are on-chain; the bot is a signer, not a broker.", "kill_this_idea": "Trojan or BonkBot add a 'quote asset' view and taxed-transfer slippage handling; you are a worse version of them. Kill if you cannot secure 200 active wallets in month one.", "why_not_web2": "It is a wallet, not an account.", "integration_note": "Integration only, but heavy: Jupiter Ultra swap, Token-2022 transfer-fee math, key custody for Telegram users (the hard part).", "scores": {"founder_fit": 1, "mvp_speed": 1, "distribution_clarity": 1, "market_pull": 2, "revenue_path": 3}, "competitors": [{"name": "Trojan, BonkBot, Photon, Axiom", "type": "direct", "signal": "dominant Solana trading bots", "why_they_have_not_won": "no quote-pair awareness; taxed tokens show wrong slippage"}], "oss_landscape": [{"name": "Jupiter Ultra API", "signal": "active", "notes": "handles Token-2022 transfer fees in routing"}], "mvp_checklist": ["Weeks 1-3: custody, swap, quote-exposure view, reward auto-claim, fee taking."], "gtm": {"wedge": "The only bot that shows what you actually hold when your meme is priced in Tesla.", "first_ten_users": "StonkFun Telegram traders", "channels": ["StonkFun Telegram", "X"], "message_angle": "Trade the pair, not just the meme."}, "risks": [{"risk": "Custody risk and incumbents", "mitigation": "Ship as a Blink/Seeker flow with user wallets instead of custodial keys."}], "validation_sprint": [{"day": 1, "task": "Ask StonkFun traders which bot they use and what breaks on taxed coins."}, {"day": 7, "task": "Only proceed with a partner who has a trading audience."}]}, {"slug": "fee-stream-market", "name": "Fee Stream Market: trade and borrow against creator fee positions", "rank": 9, "status": "shortlisted", "sector": "DeFi / structured products", "one_liner": "A marketplace and lending pool for StonkFun creator fee positions: sell the next 30 days of a coin's 0.5% trade fees for USDC today, or borrow against a graduated coin's fee history; positions transfer through the Fee Key NFT referenced in the API.", "why_it_wins": "Not the winner. Best revenue logic of the ten (creators want liquidity, buyers want cash-flowing assets) but it needs a custom on-chain program, an audit, and a legal view on selling fee streams. That is a multi-month build for a solo founder without a program track record.", "why_crypto_is_necessary": "The fee position is on-chain, verifiable, and transferable; escrow and repayment can be enforced by program, not contract law.", "kill_this_idea": "If the Fee Key NFT is not transferable or StonkFun changes fee custody, the primitive does not exist. Confirm this with the team before writing any code. Also kill if fee streams are too volatile for any buyer to price.", "why_not_web2": "Selling future revenue off-chain requires a legal entity, contracts, and enforcement; on-chain it is an escrowed asset transfer.", "integration_note": "Custom program required (escrow of the Fee Key NFT, claim routing, repayment). Not integration-only.", "scores": {"founder_fit": 1, "mvp_speed": 0, "distribution_clarity": 1, "market_pull": 2, "revenue_path": 3}, "competitors": [{"name": "Bags fee-share tokens / secondary markets", "type": "adjacent", "signal": "royalty recipient positions are configurable", "why_they_have_not_won": "no lending or forward sale market exists on Solana launchpads"}], "oss_landscape": [{"name": "Anchor + Metaplex Core escrow examples", "signal": "stable", "notes": "starting point for NFT escrow; still needs audit"}], "mvp_checklist": ["Month 1: confirm Fee Key NFT transferability, design escrow program, build OTC forward sale; Month 2: audit and a lending pool."], "gtm": {"wedge": "Cash out your creator fees without selling your coin.", "first_ten_users": "Creators of the 666 graduated coins with steady volume", "channels": ["StonkFun Telegram", "direct DMs to top creators"], "message_angle": "Liquidity for fee positions."}, "risks": [{"risk": "Program risk and regulatory classification", "mitigation": "Start with OTC forward sales between named parties; add a pool only after legal review."}], "validation_sprint": [{"day": 1, "task": "Ask the StonkFun team whether Fee Key NFTs are transferable and whether fees follow the NFT."}, {"day": 3, "task": "Ask ten graduated-coin creators whether they would sell 30 days of fees at a 20% discount."}]}, {"slug": "reward-coin-index-vault", "name": "Reward Coin Index Vault: a yield-bearing basket per quote asset", "rank": 10, "status": "shortlisted", "sector": "DeFi / asset management", "one_liner": "A vault token that holds the top reward coins paired with one quote asset (e.g. the NVDAX basket), auto-harvests the transfer-tax dividends, and either compounds or pays them out, giving buyers diversified meme exposure with real-asset dividends.", "why_it_wins": "Not the winner, and closest to a kill. It needs a vault program and rebalancing logic, the underlying coins have short lives, and a basket of memes with dividends will be read as a security. Included because it is the sector-complete DeFi answer and would be the natural consumer of idea #3's data.", "why_crypto_is_necessary": "Composability: the vault holds on-chain positions and receives on-chain dividends automatically.", "kill_this_idea": "Most constituents die within weeks and the vault becomes a bag of dust. Kill unless idea #3 shows at least 20 reward coins with 90-day survival and steady yield.", "why_not_web2": "There is no off-chain way to hold and harvest these positions.", "integration_note": "Custom program required (vault, rebalancing, harvest). Not integration-only.", "scores": {"founder_fit": 1, "mvp_speed": 0, "distribution_clarity": 1, "market_pull": 1, "revenue_path": 2}, "competitors": [{"name": "Meme index products (various)", "type": "adjacent", "signal": "several launched, few survived", "why_they_have_not_won": "constituent churn and no yield component"}], "oss_landscape": [{"name": "Kamino / Meteora vault code", "signal": "active", "notes": "reference only; do not fork without an audit"}], "mvp_checklist": ["Only after idea #3 proves survival; then a 6-8 week program build plus audit."], "gtm": {"wedge": "Own the NVDAX meme basket and get paid in NVDAX.", "first_ten_users": "Screener users from idea #3", "channels": ["Screener", "X"], "message_angle": "Diversified, dividend-paying degen exposure."}, "risks": [{"risk": "Constituent churn and securities framing", "mitigation": "Do not build until survival data exists; consider a non-custodial 'follow the basket' feature instead."}], "validation_sprint": [{"day": 1, "task": "Compute 30/60/90-day survival of reward coins from the /launches ledger."}, {"day": 7, "task": "Decide from the survival curve."}]}]};
+      document.body.className = (D.theme || 'manuscript').toLowerCase().trim();
+
+      function $(id) { return document.getElementById(id); }
+      function el(t, c, txt) {
+        var n = document.createElement(t);
+        if (c) n.className = c;
+        if (txt != null) n.textContent = txt;
+        return n;
+      }
+
+      $('report-title').textContent = D.title || 'Find Next Crypto Idea';
+      $('report-subtitle').textContent = D.report_type === 'deep-dive'
+        ? 'Deep-dive analysis on the selected idea.'
+        : 'Shortlist of defensible crypto ideas from interview and research.';
+
+      var meta = $('hero-meta');
+      [D.report_type || 'shortlist', D.generated_at || ''].filter(Boolean)
+        .forEach(function(v) { meta.appendChild(el('span', 'chip', v)); });
+
+      /* Winner banner */
+      var ideas = D.ideas || [];
+      var winner = ideas.find(function(i) { return i.slug === D.recommended_winner; })
+        || ideas.find(function(i) { return i.status === 'winner'; });
+      if (winner) {
+        $('winner-banner').style.display = '';
+        $('winner-name').textContent = winner.name;
+        $('winner-sub').textContent = winner.one_liner || '';
+        $('winner-why').textContent = winner.why_it_wins || '';
+      }
+
+      /* Context */
+      var ctx = $('context-summary');
+      ((D.user_context && D.user_context.summary) || []).forEach(function(s) {
+        ctx.appendChild(el('div', 'ctx-item', s));
+      });
+      if (!ctx.children.length) ctx.appendChild(el('div', 'ctx-item', 'No context provided.'));
+
+      var ans = $('clarifying-answers');
+      ((D.user_context && D.user_context.clarifying_answers) || []).forEach(function(qa) {
+        var d = el('div', 'ctx-item');
+        d.appendChild(el('div', 'ctx-q', qa.question || ''));
+        d.appendChild(el('div', 'ctx-a', qa.answer || ''));
+        ans.appendChild(d);
+      });
+      if (!ans.children.length) ans.appendChild(el('div', 'ctx-item', 'No answers captured.'));
+
+      /* Ideas */
+      var root = $('ideas');
+      ideas.forEach(function(idea) {
+        var card = el('article', 'idea-card' + (idea.status === 'winner' ? ' winner' : ''));
+
+        /* Header */
+        var hdr = el('div', 'idea-header');
+        hdr.appendChild(el('h3', '', idea.name || 'Untitled'));
+        hdr.appendChild(el('span', 'badge' + (idea.status === 'winner' ? ' winner' : ''),
+          idea.status === 'winner' ? 'Winner' : (idea.status || '#' + (idea.rank || '?'))));
+        card.appendChild(hdr);
+        card.appendChild(el('div', 'idea-sub', idea.one_liner || ''));
+
+        /* Scores */
+        var scores = idea.scores || {};
+        var keys = Object.keys(scores);
+        if (keys.length) {
+          var sg = el('div', 'scores-grid');
+          keys.forEach(function(k) {
+            var sc = el('div', 'score-card');
+            var numWrap = el('div', 'score-num');
+            numWrap.textContent = scores[k];
+            var maxSpan = el('span', 'score-max', '/3');
+            numWrap.appendChild(maxSpan);
+            sc.appendChild(numWrap);
+            sc.appendChild(el('div', 'score-label', k.replace(/_/g, ' ')));
+            sg.appendChild(sc);
+          });
+          card.appendChild(sg);
+        }
+
+        /* Prose 2-col */
+        var proseItems = [
+          ['Why it wins', idea.why_it_wins],
+          ['Why crypto is necessary', idea.why_crypto_is_necessary],
+          ['Kill this idea', idea.kill_this_idea],
+          ['Why not Web2', idea.why_not_web2]
+        ].filter(function(p) { return p[1]; });
+
+        for (var i = 0; i < proseItems.length; i += 2) {
+          var pg = el('div', 'prose-grid');
+          for (var j = i; j < Math.min(i + 2, proseItems.length); j++) {
+            var pb = el('div', 'prose-block');
+            pb.appendChild(el('h4', '', proseItems[j][0]));
+            pb.appendChild(el('p', '', proseItems[j][1]));
+            pg.appendChild(pb);
+          }
+          card.appendChild(pg);
+        }
+
+        /* Competitors */
+        if ((idea.competitors || []).length) {
+          card.appendChild(el('div', 'section-label', 'Competitors & Substitutes'));
+          var tbl = el('table', 'comp-table');
+          var thead = el('thead');
+          var trh = el('tr');
+          ['Name', 'Type', 'Signal', 'Why they haven\u2019t won'].forEach(function(h) {
+            trh.appendChild(el('th', '', h));
+          });
+          thead.appendChild(trh);
+          tbl.appendChild(thead);
+          var tbody = el('tbody');
+          idea.competitors.forEach(function(c) {
+            var tr = el('tr');
+            tr.appendChild(el('td', '', c.name || ''));
+            var tdType = el('td');
+            tdType.appendChild(el('span', 'comp-type', c.type || ''));
+            tr.appendChild(tdType);
+            tr.appendChild(el('td', '', c.signal || ''));
+            tr.appendChild(el('td', '', c.why_they_have_not_won || ''));
+            tbody.appendChild(tr);
+          });
+          tbl.appendChild(tbody);
+          card.appendChild(tbl);
+        }
+
+        /* OSS */
+        if ((idea.oss_landscape || []).length) {
+          card.appendChild(el('div', 'section-label', 'OSS Landscape'));
+          var og = el('div', 'oss-grid');
+          idea.oss_landscape.forEach(function(o) {
+            var oc = el('div', 'oss-card');
+            oc.appendChild(el('strong', '', o.name || ''));
+            oc.appendChild(el('div', 'oss-signal', [o.signal, o.notes].filter(Boolean).join(' \u2014 ')));
+            og.appendChild(oc);
+          });
+          card.appendChild(og);
+        }
+
+        /* MVP */
+        if ((idea.mvp_checklist || []).length) {
+          card.appendChild(el('div', 'section-label', '2-Week MVP'));
+          var cl = el('div', 'checklist');
+          idea.mvp_checklist.forEach(function(item) {
+            var ci = el('div', 'check-item');
+            ci.appendChild(el('div', 'check-box'));
+            ci.appendChild(el('span', '', item));
+            cl.appendChild(ci);
+          });
+          card.appendChild(cl);
+        }
+
+        /* Risks */
+        if ((idea.risks || []).length) {
+          card.appendChild(el('div', 'section-label', 'Risks'));
+          var rr = el('div', 'risk-row');
+          idea.risks.forEach(function(r) {
+            var rc = el('div', 'risk-card');
+            rc.appendChild(el('strong', '', r.risk || ''));
+            if (r.mitigation) rc.appendChild(el('p', '', r.mitigation));
+            rr.appendChild(rc);
+          });
+          card.appendChild(rr);
+        }
+
+        /* Validation sprint */
+        if ((idea.validation_sprint || []).length) {
+          card.appendChild(el('div', 'section-label', '7-Day Validation Sprint'));
+          var tl = el('div', 'timeline');
+          idea.validation_sprint.forEach(function(d) {
+            var td = el('div', 'timeline-day');
+            td.appendChild(el('strong', '', 'Day ' + (d.day || '?')));
+            td.appendChild(el('span', '', d.task || ''));
+            tl.appendChild(td);
+          });
+          card.appendChild(tl);
+        }
+
+        /* GTM */
+        if (idea.gtm) {
+          card.appendChild(el('div', 'section-label', 'Go-to-Market'));
+          var gg = el('div', 'gtm-grid');
+          var gm = el('div', 'gtm-main');
+          if (idea.gtm.wedge) gm.appendChild(el('p', '', idea.gtm.wedge));
+          if (idea.gtm.first_ten_users) {
+            var fp = el('p', '');
+            fp.appendChild(el('strong', '', 'First 10 users: '));
+            fp.appendChild(document.createTextNode(idea.gtm.first_ten_users));
+            gm.appendChild(fp);
+          }
+          if (idea.gtm.message_angle) {
+            var mp = el('p', '');
+            mp.appendChild(el('strong', '', 'Message: '));
+            mp.appendChild(document.createTextNode(idea.gtm.message_angle));
+            gm.appendChild(mp);
+          }
+          gg.appendChild(gm);
+
+          if ((idea.gtm.channels || []).length) {
+            var chs = el('div', '');
+            var chLabel = el('div', 'section-label', 'Channels');
+            chLabel.style.marginTop = '0';
+            chs.appendChild(chLabel);
+            var chWrap = el('div', 'gtm-channels');
+            idea.gtm.channels.forEach(function(ch) {
+              chWrap.appendChild(el('span', 'gtm-channel', ch));
+            });
+            chs.appendChild(chWrap);
+            gg.appendChild(chs);
+          }
+          card.appendChild(gg);
+        }
+
+        root.appendChild(card);
+      });
+    </script>
+  </body>
+</html>

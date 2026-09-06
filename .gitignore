@@ -1,0 +1,30 @@
+# secrets and keys
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+id.json
+*keypair*.json
+*wallet*.json
+secrets/
+.secrets/
+
+# dependencies and build
+node_modules/
+.next/
+dist/
+build/
+out/
+coverage/
+target/
+.turbo/
+.vercel/
+
+# local tooling
+.claude/settings.local.json
+.superstack/telemetry.jsonl
+*.log
+.DS_Store
+Thumbs.db

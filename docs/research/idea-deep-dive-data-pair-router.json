@@ -1,0 +1,182 @@
+{
+  "report_type": "deep-dive",
+  "theme": "glass",
+  "title": "Pair Router: AnsemHack Clawrena build plan (Sep 6 - Oct 1, 2026)",
+  "generated_at": "2026-09-06",
+  "recommended_winner": "pair-router",
+  "user_context": {
+    "prompt": "Show the build plan for the AnsemHack Clawrena entry. Chosen direction: Pair Router, a ClawPump skill + x402 service that lets any agent launch coins paired with real assets (xStocks, pre-stocks, $ANSEM) on StonkFun, with a flagship agent launching a reward coin paired with $ANSEM.",
+    "summary": [
+      "HACKATHON FACTS (clawpump.tech/ansemhack, fetched 2026-09-06): register on ClawPump, post on X and follow @clawpumptech, and tokenize on ClawPump or EasyA Kickstart by Sep 20. Judging Sep 21-30 (15-minute on-stream pitches). Winners Oct 1. $350k pool; the ClawPump x pump.fun track is $125k ANSEM + $40k cash for 'novel tooling or live trading agents'. Scoring: builders onboarded to Solana, on-chain volume, community attention, $ANSEM utility, early deployment. 'No token, no award.'",
+      "CLAWPUMP FACTS (docs): every agent has a non-custodial Solana wallet and signs its own transactions. Two MCP servers: Agent MCP (@clawpump/agents, 126 tools) and Launchpad MCP (https://clawpump.tech/api/mcp, 78 tools). External services integrate through skills plus x402 USDC micropayments (Trader Ralph, AgentMail, Laso Finance are examples). Community skills are prompt-only: a skills/<slug>/SKILL.md plus metadata.json in github.com/ClawPump/agents-skills, listed via registry.json by PR. Token creators keep 65% of trading fees; 35% to the platform, of which 25% buys back $CLAW and $ANSEM.",
+      "STONKFUN FACTS: open API, no key. ANSEM is a launchable quote pair (launchLabReady=true) alongside 26 xStocks, Backpack pre-stocks, the ANTHROPIC pre-stock, USDC/EURC/USDT and xSOL. Reward mode = 1% or 3% Token-2022 transfer tax paid to all holders in the quote token. Standard mode = creator earns 0.5% of every trade. Launch cost 0.03 SOL via Raydium LaunchLab. Two-call flow: POST /launches/prepare -> sign locally -> POST /launches/submit -> poll GET /launches/{sig}.",
+      "WHY THIS IS NOVEL: ClawPump agents can only launch SOL-paired coins on pump.fun (plus Pons/Uniswap/Metaplex Genesis). No agent runtime can launch a coin priced in a tokenized stock or in $ANSEM, and none can create a coin whose transfer tax pays holders in a real asset. SolEnrich is reused only as a dependency (risk check before launch), not as the entry.",
+      "WHY IT SCORES: builders onboarded = every ClawPump agent that toggles the skill and every launch routed through it; volume = launches plus trading on ANSEM-paired and xStock-paired coins; attention = 'the agent that launched a coin that pays you in ANSEM' on the weekly livestream; $ANSEM utility = ANSEM as a quote asset and a holder-reward currency, which is a demand sink; early deployment = token and first launches in week one, not the last day.",
+      "POLITICAL RISK: pump.fun sits on the judging panel and on the track name. Mitigation is built into the product: SOL pairs route to pump.fun via ClawPump's own launch tools; only asset pairs route to StonkFun. Pair Router adds pairs to pump.fun's world instead of replacing it.",
+      "UNVERIFIED ASSUMPTIONS TO CLOSE ON DAY 1: (a) the ClawPump agent runtime can sign and send an arbitrary unsigned transaction returned by an external x402 tool (needed for StonkFun's prepare/submit flow); (b) an x402 HTTP service can be called from a community skill without being a built-in tool, or else Pair Router must ship as an MCP server the agent adds; (c) the ClawPump launch form allows a project payout wallet you control for the 65% fee share; (d) StonkFun's ANSEM pair is still launchable on launch day (check GET /pairs)."
+    ],
+    "clarifying_answers": [
+      {
+        "question": "Why not enter SolEnrich again with new endpoints?",
+        "answer": "It was the Bags hackathon entry. Judges will read it as a resubmission. Pair Router is a new product, new token, new job; SolEnrich is a dependency."
+      },
+      {
+        "question": "Why Pair Router over the Treasury Agent?",
+        "answer": "More novel, more visual on stream, strongest $ANSEM utility story, and it turns the StonkFun research into the entry. Treasury Agent is the fallback if pump.fun judges object to routing launches to Raydium."
+      },
+      {
+        "question": "What is the token?",
+        "answer": "$PAIR (working ticker) launched on ClawPump in week one. Utility inside the product: holders of $PAIR get a discount on the x402 launch fee, and a share of Pair Router's own creator-fee income buys back $PAIR and $ANSEM. Keep utility simple enough to state in one sentence on stream."
+      }
+    ]
+  },
+  "ideas": [
+    {
+      "slug": "pair-router",
+      "name": "Pair Router: launch coins paired with real assets from any agent",
+      "rank": 1,
+      "status": "winner",
+      "sector": "Agent infrastructure / agentic commerce",
+      "one_liner": "A ClawPump skill + MCP + x402 service that lets any AI agent launch a coin paired with an xStock, a pre-stock, a currency, or $ANSEM on StonkFun, run a dev buy, and claim fees, with a flagship agent that launches a reward coin paying its holders in $ANSEM.",
+      "why_it_wins": "It is the only entry shape that scores on all five judging criteria while being new to the judges. The core loop is a one-week build on an open API, the x402 billing already exists in your stack, and the ANSEM pair gives the pitch a sentence Ansem cannot ignore: 'every trade of this coin pays its holders in ANSEM.'",
+      "why_crypto_is_necessary": "The customer is an agent with a wallet and no accounts; x402 is the only way to bill it. The launch, the transfer tax, and the fee position are on-chain objects the agent's key must sign for. Paying holders in a tokenized stock is not possible off-chain.",
+      "kill_this_idea": "If the ClawPump runtime cannot sign an externally prepared transaction and there is no MCP path either, the product cannot run inside ClawPump agents; fall back to the Treasury Agent by Sep 9. Also kill if fewer than three external agents route a launch through it by Sep 20.",
+      "why_not_web2": "There is no Web2 way for a program to create a revenue-bearing asset priced in Tesla stock, or to bill an anonymous machine per action.",
+      "integration_note": "Integration only. StonkFun public API (prepare/submit/status/fees/claim/pairs/launchlab pricing), ClawPump Agent MCP for wallet signing, x402 server from solenrich/cardex, Jupiter for dev-buy swaps if the agent holds SOL but not the quote asset, SolEnrich due-diligence as an optional pre-launch check.",
+      "scores": {
+        "founder_fit": 3,
+        "mvp_speed": 3,
+        "distribution_clarity": 3,
+        "market_pull": 2,
+        "revenue_path": 2
+      },
+      "competitors": [
+        {
+          "name": "ClawPump native launch tools (pump.fun, Pons, Uniswap, Metaplex Genesis)",
+          "type": "adjacent",
+          "signal": "78-tool Launchpad MCP, 3 free launches per user",
+          "why_they_have_not_won": "SOL-paired only; no quote-asset or holder-reward concept"
+        },
+        {
+          "name": "Bags skill / JackBuilds tooling",
+          "type": "adjacent",
+          "signal": "Bags hackathon output",
+          "why_they_have_not_won": "Bags-only; no asset pairs"
+        },
+        {
+          "name": "Virtuals ACP (Base)",
+          "type": "substitute",
+          "signal": "agent-token launches at scale",
+          "why_they_have_not_won": "no Solana, no real-asset pairs"
+        }
+      ],
+      "oss_landscape": [
+        {
+          "name": "StonkFun OpenAPI (/api/public/v1/openapi.json)",
+          "signal": "published",
+          "notes": "generate the typed client and MCP tool schemas from it"
+        },
+        {
+          "name": "coinbase/x402 (Solana facilitators: PayAI, CDP)",
+          "signal": "active",
+          "notes": "already in production in solenrich"
+        },
+        {
+          "name": "ClawPump/agents-skills",
+          "signal": "active registry",
+          "notes": "SKILL.md + metadata.json + registry.json entry; PR for listing"
+        },
+        {
+          "name": "@clawpump/agents MCP",
+          "signal": "126 tools",
+          "notes": "wallet, sign, billing; verify the sign-arbitrary-transaction tool on day 1"
+        }
+      ],
+      "mvp_checklist": [
+        "Sep 6-7 (Day 0-1) VERIFY: create a ClawPump account and agent; confirm the agent can sign and send an unsigned tx from an external tool; confirm the launch form's payout wallet; confirm skills can call x402 HTTP or that an MCP can be attached; check GET /pairs for ANSEM launchLabReady. Decide go/no-go on Sep 7.",
+        "Sep 8 (Day 2) REGISTER + WALLET: register the team on clawpump.tech, post the announcement on X, follow @clawpumptech, book a livestream slot for the week of Sep 15. Create the StonkFlow agent in ClawPump and set its payout wallet (dashboard or set_external_wallet) BEFORE launching the token.",
+        "Sep 8-9 (Day 2-3) CORE: typed StonkFun client from OpenAPI; launchPair(), status(), claimFees() as idempotent orchestrations (handle 409 conflict, 503 charged:false, 429 Retry-After); pair catalog with categories (xstock, prestock, currency, leverage, ansem).",
+        "Sep 10-11 (Day 4-5) BILLING: x402 on POST /launch ($1 USDC per prepared launch, $0.10 per claim) reusing the solenrich server; reads free; SOL-fronting option: agent pays USDC, service sends 0.03 SOL + dev-buy SOL to the agent wallet, then the agent signs the launch.",
+        "Sep 9-10 (Day 3-4) TOKEN: launch the entry token through ClawPump (gasless pump.fun bonding curve, linked to the StonkFlow agent, 65% of trading fees to the payout wallet) on the same day the first StonkFun launch goes through the router, so the announcement thread shows both. Utility in one sentence: holders get a discount on the x402 launch fee; router income buys back the entry token and ANSEM. Then check whether the entry token can be adopted as a StonkFun custom quote pair, which would let coins launched through the router airdrop to entry-token holders.",
+        "Sep 12 (Day 6) DISTRIBUTION: publish pair-router MCP (HTTP) and the community skill PR to ClawPump/agents-skills (SKILL.md tells the agent when to use asset pairs vs pump.fun, how to pay via x402, how to sign); list the x402 endpoints in the bazaar and on x402-list.",
+        "Sep 13-14 (Day 7-8) FLAGSHIP AGENT: a public ClawPump agent ('the ANSEM dividend launcher') that launches one event-driven coin per week paired with ANSEM or an xStock, publishes every launch, fee, and holder payout to a public ledger page, and uses SolEnrich due diligence before any dev buy.",
+        "Sep 15-16 (Day 9-10) LEDGER + PITCH: public dashboard (launches routed, agents served, volume, ANSEM paid to holders, $PAIR buybacks); 15-minute pitch deck; first livestream demo: launch a NVDAX-paired coin from one prompt live.",
+        "Sep 17-19 (Day 11-13) ONBOARD: DM ten hackathon teams and five agent operators; offer a free first launch through the router; ship fixes from their runs; get at least three external agents to route a launch.",
+        "Sep 20 (Day 14) DEADLINE: registration + token confirmed on the entry form; attach token link; submit.",
+        "Sep 21-30 JUDGING: keep the flagship agent launching weekly; second livestream slot; publish weekly numbers; do not change scope."
+      ],
+      "gtm": {
+        "wedge": "Launch a coin that pays its holders in ANSEM, from one prompt, from any agent.",
+        "first_ten_users": "Your own flagship agent; three to five other Clawrena teams that already have a ClawPump agent; two ElizaOS/OpenClaw operators on Solana; two StonkFun Telegram power creators who want an agent to run launches; one xStock community (TSLAX or NVDAX holders)",
+        "channels": [
+          "Clawrena weekly livestream (MCG, EasyA, Ansem hosts)",
+          "ClawPump Discord and community skill registry",
+          "x402 bazaar and x402-list",
+          "StonkFun Telegram and @launchonsf",
+          "X thread per launch with the holder-payout ledger"
+        ],
+        "message_angle": "pump.fun launches memes against SOL. Pair Router launches them against Tesla, Nvidia, and ANSEM, and pays holders in the real thing."
+      },
+      "risks": [
+        {
+          "risk": "ClawPump runtime cannot sign externally prepared transactions",
+          "mitigation": "Day 1 test. Fallback A: ship as an MCP the agent attaches. Fallback B: the service becomes the creator wallet and forwards the 0.5% creator fee to the agent's wallet by rule (custodial for fees only, disclosed)."
+        },
+        {
+          "risk": "pump.fun judges see Raydium routing as competitive",
+          "mitigation": "SOL pairs route to pump.fun through ClawPump's own tools; the pitch frames Pair Router as adding pairs, not replacing pump.fun."
+        },
+        {
+          "risk": "Coins launched through the router rug and the router gets blamed",
+          "mitigation": "Every launch is attributed to the paying wallet on the public ledger; per-wallet rate limits; name/symbol screening; SolEnrich risk check on dev buys."
+        },
+        {
+          "risk": "ANSEM pair is delisted or illiquid on StonkFun",
+          "mitigation": "Flagship falls back to a USDC-paired reward coin that buys ANSEM with the fee stream; utility story survives."
+        },
+        {
+          "risk": "Two weeks is tight for a second livestream and onboarding",
+          "mitigation": "Core loop done by Sep 10; everything after is distribution. Cut SOL-fronting if it slips; it is not required for the demo."
+        },
+        {
+          "risk": "Token vesting and securities optics for $PAIR",
+          "mitigation": "State utility plainly (fee discount, buybacks), no return promises, follow ClawPump's vesting defaults."
+        },
+        {
+          "risk": "Entry token launches on a pump.fun bonding curve with nothing behind it and the chart dies before judging",
+          "mitigation": "Launch it the same day the router's first live launch is public; post the ledger link in the token description; keep weekly flagship launches so there is always a reason to look at it. Graduation is not required to score, fee share accrues while it trades."
+        }
+      ],
+      "validation_sprint": [
+        {
+          "day": 1,
+          "task": "Run the four verification checks; write go/no-go in docs/CHECKPOINT.md."
+        },
+        {
+          "day": 2,
+          "task": "Register, post on X, book the livestream slot."
+        },
+        {
+          "day": 3,
+          "task": "First launch routed end to end on mainnet with your own agent wallet."
+        },
+        {
+          "day": 5,
+          "task": "$PAIR live; first external x402 payment from a wallet you do not control."
+        },
+        {
+          "day": 7,
+          "task": "Skill PR open; MCP public; ledger page live."
+        },
+        {
+          "day": 10,
+          "task": "Livestream demo done; three external agents onboarded or start DMing harder."
+        },
+        {
+          "day": 14,
+          "task": "Submit. If fewer than three external launches, the entry still stands on the flagship agent's own volume."
+        }
+      ]
+    }
+  ]
+}
