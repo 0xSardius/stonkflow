@@ -22,8 +22,11 @@ StonkFlow: agent launches of asset-paired coins on StonkFun via x402 + MCP + Cla
 - Sep 20 23:59 UTC: token live and verified against project X handle.
 - Sep 21-30 judging. Oct 1 winners.
 
+## Day 0-1 checks (2026-09-06)
+Results in PRD section 9. Summary: hosted ClawPump agents cannot sign external transactions (-> managed signing mode) but can pay any x402 URL (x402_pay). Self-hosted claw-agent (Hermes fork) attaches MCPs. ANSEM pair is launchable; official mint 9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump (a copycat ANSEM mint is also listed). UsePod is feasible; stack the Inference Markets track. Domain: stonkflow.xyz primary, .fun as redirect.
+
 ## Next
-1. Day 0-1 checks (see PRD section 9): ClawPump agent can sign external unsigned tx; skill can call x402 or MCP attach; payout wallet; ANSEM pair launchLabReady; UsePod inference feasibility.
+1. Founder-only checks: create ClawPump agent, enable x402 skill, live x402_pay against a SolEnrich endpoint, set payout wallet.
 2. /scaffold-project (Next.js + @solana/kit + x402 server from solenrich + MCP).
 3. Router core, then token launch with first routed launch.
 

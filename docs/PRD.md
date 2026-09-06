@@ -1,6 +1,6 @@
 # StonkFlow PRD
 
-Status: draft v0.1, 2026-09-06. Owner: 0xSardius. Target: AnsemHack Clawrena entry, tokenized by 2026-09-20 23:59 UTC.
+Status: draft v0.2, 2026-09-06 (Day-1 checks recorded). Owner: 0xSardius. Target: AnsemHack Clawrena entry, tokenized by 2026-09-20 23:59 UTC.
 
 ## 1. Summary
 
@@ -15,7 +15,7 @@ Every agent launchpad, ClawPump included, launches coins against SOL on pump.fun
 ## 3. Goals
 
 1. An agent launches a coin paired with any StonkFun-launchable asset with one paid call.
-2. The launch is non-custodial. The agent signs. StonkFlow never holds a key.
+2. Two signing tiers. Self-hosted agents (Hermes/claw-agent, ElizaOS) sign their own launch and are creator-of-record. Hosted ClawPump agents cannot sign arbitrary transactions, so StonkFlow signs as creator-of-record and forwards the creator share to the agent's wallet by rule, on the ledger.
 3. Billing is per call in USDC over x402. No accounts, no API keys.
 4. Every launch, fee, buyback, and holder payout is on a public ledger page.
 5. Judges see a net-new $ANSEM use case live on stream.
@@ -51,8 +51,16 @@ Every agent launchpad, ClawPump included, launches coins against SOL on pump.fun
 
 ### 7.1 Router API
 
+Signing model (decided 2026-09-06 after the Day-1 checks):
+
+- StonkFun requires `creatorWallet` to sign the launch payment, and creator fees land in `creatorWallet`'s token accounts (forwarded automatically on LaunchLab launches).
+- Hosted ClawPump agents have no tool to sign an externally prepared transaction. They can pay any x402 URL from their wallet with `x402_pay` (hard-capped, needs the `x402` skill), swap on Raydium with `swap_execute`, and transfer with `wallet_transfer`.
+- Therefore `POST /launch` takes `signingMode`: `self` (returns the unsigned transaction for the agent to sign; agent is creator-of-record) or `managed` (StonkFlow's treasury key signs as creator; the agent supplies `payoutWallet`; StonkFlow forwards the creator share to `payoutWallet` on every claim/forward and posts it to the ledger). Reward-mode launches have no creator fee, so `managed` has no fee custody at all.
+- The agent's own position comes from its own swap after the pool exists. StonkFlow does not custody agent tokens.
+
+
 - Base `/v1`. JSON. Idempotency key on every write. Errors as `{ error: { code, message } }`.
-- `POST /launch` (x402, $1.00; holder price $0.50; SOL-fronting price $1.00 + SOL at Jupiter spot + 10%): validates input against `GET /pairs`, calls StonkFun `POST /launches/prepare`, returns `{ launchId, unsignedTransaction, quote, expiresAt }`.
+- `POST /launch` (x402; `self` $1.00, `managed` $1.00 + 0.03 SOL at Jupiter spot + 10%; holder price halves the USD part): validates input against `GET /pairs`, calls StonkFun `POST /launches/prepare`. `self` returns `{ launchId, unsignedTransaction, quote, expiresAt }`. `managed` signs, submits, and returns `{ launchId, status }` directly.
 - `POST /launch/submit` (free): forwards the signed transaction to StonkFun `POST /launches/submit`, stores the payment signature, returns `{ launchId, status }`.
 - `GET /launch/{launchId}` (free): polls StonkFun `GET /launches/{paymentSignature}`, returns status, mint, pool address.
 - `POST /fees/claim` (x402, $0.10): wraps StonkFun claim prepare; `POST /fees/claim/submit` (free) wraps claim submit.
@@ -64,7 +72,7 @@ Every agent launchpad, ClawPump included, launches coins against SOL on pump.fun
 
 - x402 middleware reused from solenrich. USDC on Solana; Base accepted. Facilitator: PayAI or CDP.
 - Holder price: agent sends `X-Wallet` and `X-Wallet-Signature` over a server nonce; server checks entry-token balance above a threshold, returns the lower price in the 402 response.
-- SOL fronting: after settlement, server transfers SOL to the payer wallet, records the transfer on the ledger, then returns the prepared transaction.
+- SOL fronting is folded into `managed` mode: the treasury pays the 0.03 SOL deploy fee and the agent repays it inside the x402 price. No SOL is sent to agent wallets.
 
 ### 7.3 MCP server and skill
 
@@ -97,15 +105,18 @@ Every agent launchpad, ClawPump included, launches coins against SOL on pump.fun
 - Rate limits respected: 25/min on StonkFun prepare, so StonkFlow queues above 20/min.
 - Secrets in environment only; `.env` gitignored before first commit; no secrets printed in logs.
 
-## 9. Dependencies and Day-1 checks
+## 9. Dependencies and Day-1 checks (results 2026-09-06)
 
-| Check | If it fails |
-|-------|-------------|
-| ClawPump agent can sign and send an unsigned transaction from an external tool | Ship MCP-only; if no MCP path either, switch to the Treasury Agent fallback by Sep 9 |
-| A community skill can call an x402 endpoint, or an MCP can be attached | Same as above |
-| ClawPump launch accepts a payout wallet we control | Use the agent's own wallet as payout and sweep |
-| StonkFun `GET /pairs` shows ANSEM `launchLabReady: true` | Flagship uses USDC pair and buys ANSEM with fees |
-| UsePod inference works for the flagship in under a day | Skip the Inference Markets track |
+| Check | Result | Consequence |
+|-------|--------|-------------|
+| ClawPump agent can sign an unsigned transaction from an external tool | FAIL (docs and the claw-agent skill list no such tool; domain tools sign internally) | `managed` signing mode for hosted agents; `self` mode for self-hosted Hermes/Eliza agents |
+| Agent can call an external x402 endpoint | PASS (`x402_pay_check` + `x402_pay` pay any URL from the agent wallet, hard-capped, needs the `x402` skill enabled via `update_agent`) | No Pay.sh listing required; list on Pay.sh and Dexter anyway for discovery |
+| External MCP can be attached | PASS for self-hosted claw-agent (`hermes mcp install`, `optional-mcps/` manifests); NOT for hosted agents (prompt-only custom skills) | Ship the MCP for self-hosted agents; ship a `create_custom_skill` prompt that teaches hosted agents to use `x402_pay` against StonkFlow |
+| Payout wallet | PASS (`set_external_wallet`; dashboard) | Set before token launch |
+| ANSEM pair launchable on StonkFun | PASS, with a trap: two "The Black Bull" ANSEM mints are listed. Official is `9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump` (pump.fun origin, Token-2022). Pin the mint; never resolve by symbol | Hardcode the mint in the pair catalog |
+| UsePod feasible | PASS (`https://api.usepod.ai/v1`, OpenAI/Anthropic-compatible, x402 per request on Solana; ClawPump has `usepod_provision`) | Stack the Inference Markets track; flagship agent inference on UsePod with receipts on the ledger |
+
+Still needs the founder's account (cannot be done by Claude): create the ClawPump agent, enable the `x402` skill, run one live `x402_pay` against a SolEnrich endpoint to confirm Solana USDC settlement, set the payout wallet.
 
 ## 10. Success metrics (by 2026-09-30)
 
@@ -137,5 +148,5 @@ Sep 6-7 checks. Sep 8 register, agent, payout wallet, livestream slot. Sep 8-9 r
 1. Final name and X handle (StonkFlow assumed).
 2. Entry-token holder threshold for the discount.
 3. Share of router income allocated to buybacks.
-4. Whether UsePod inference is worth the Inference Markets stack.
+4. Treasury hot-wallet cap for managed launches (0.03 SOL each plus buybacks).
 5. Whether StonkFun will list a graduated pump.fun token as a custom quote pair.

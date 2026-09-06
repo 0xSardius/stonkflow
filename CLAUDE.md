@@ -35,7 +35,8 @@ Two scheduled jobs: the flagship agent policy (one launch per week, reward mode,
 
 ## Invariants
 
-- Non-custodial. The agent signs its own launch. StonkFlow holds one treasury hot wallet for SOL fronting and buybacks, with a capped balance. No other private keys, ever.
+- Two signing modes. `self`: the agent signs and is creator-of-record. `managed`: StonkFlow's treasury key signs as creator (hosted ClawPump agents cannot sign arbitrary transactions) and forwards the creator share to the agent's `payoutWallet` by rule. The treasury hot wallet has a capped balance. No other private keys, ever.
+- Hosted ClawPump agents reach StonkFlow through `x402_pay` (pay any URL, needs the `x402` skill). Self-hosted claw-agent (Hermes) attaches the MCP with `hermes mcp install`.
 - At-most-once payment per launch. Every write takes an idempotency key.
 - Holder pricing: the agent proves its wallet with a signature over a server nonce; the server checks entry-token balance and returns the lower price in the 402 response.
 - SOL pairs never route to StonkFun. That routing decision is deliberate for the hackathon and is stated in the skill text.
@@ -44,8 +45,10 @@ Two scheduled jobs: the flagship agent policy (one launch per week, reward mode,
 ## External APIs
 
 - StonkFun: no API key. Base `/api/public/v1`. Two-call launch flow. Reward mode = Token-2022 transfer tax paid to holders in the quote token. Standard mode = creator earns 0.5% of volume (1.5% on the 2% tier).
-- ClawPump: agents have their own wallet and sign their own transactions. Community skills are prompt-only (`SKILL.md` + `metadata.json` in `ClawPump/agents-skills`). Payout wallet is set via dashboard or the `set_external_wallet` MCP tool.
+- ClawPump: hosted agents have their own wallet; domain tools sign internally; no generic sign tool. `x402_pay` pays any x402 URL. `swap_execute` covers Raydium. `wallet_transfer` needs a whitelisted destination. claw-agent is a Hermes (Nous Research) fork: the 'Hermes DeFi harness' in the track text is this runtime. Community skills are prompt-only (`SKILL.md` + `metadata.json` in `ClawPump/agents-skills`). Payout wallet is set via dashboard or the `set_external_wallet` MCP tool.
 - x402 facilitator: PayAI or CDP on Solana.
+- ANSEM official mint: `9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump`. A second ANSEM mint exists on StonkFun; never resolve ANSEM by symbol.
+- UsePod: `https://api.usepod.ai/v1`, OpenAI/Anthropic-compatible, x402 per request. Flagship inference runs here for the Inference Markets track.
 
 ## Docs conventions
 
