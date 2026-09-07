@@ -23,15 +23,21 @@ export type LaunchableCategory = (typeof AGENT_LAUNCHABLE_CATEGORIES)[number];
 
 /**
  * x402 prices in USD strings, keyed by route id. Static per route because the
- * x402 middleware needs the price at config time. Managed mode includes the
- * 0.03 SOL deploy fee the treasury pays; set MANAGED_LAUNCH_PRICE_USD from the
- * current SOL price before each deploy.
+ * x402 middleware needs the price at config time.
+ *
+ * Verified live 2026-09-06: StonkFun's API launch charges the creator
+ * 0.2904 SOL (about $31 at $106/SOL). In self mode the agent pays that SOL
+ * itself and $1 to us. In managed mode the treasury pays it, so the managed
+ * price is fee x SOL price x 1.1 + $1. Set MANAGED_LAUNCH_PRICE_USD from the
+ * current SOL price before each deploy. The 0.03 SOL self-built LaunchLab
+ * path is a later optimization (codec exists in ../solenrich/src/sources/launchlab.ts).
  */
+export const STONKFUN_API_LAUNCH_FEE_SOL = 0.290409252;
 export const PRICING = {
   launch_self: `$${env('SELF_LAUNCH_PRICE_USD', '1.00')}`,
   launch_self_holder: `$${env('SELF_LAUNCH_HOLDER_PRICE_USD', '0.50')}`,
-  launch_managed: `$${env('MANAGED_LAUNCH_PRICE_USD', '8.00')}`,
-  launch_managed_holder: `$${env('MANAGED_LAUNCH_HOLDER_PRICE_USD', '7.50')}`,
+  launch_managed: `$${env('MANAGED_LAUNCH_PRICE_USD', '35.00')}`,
+  launch_managed_holder: `$${env('MANAGED_LAUNCH_HOLDER_PRICE_USD', '34.00')}`,
   claim_prepare: `$${env('CLAIM_PRICE_USD', '0.10')}`,
 } as const;
 export type PricedRoute = keyof typeof PRICING;
@@ -73,7 +79,7 @@ export const CONFIG = {
     /** Hard cap on what the hot wallet may hold, in SOL. Startup refuses above this. */
     maxSol: Number(env('TREASURY_MAX_SOL', '2')),
     /** Below this the managed route returns 503 instead of failing mid-launch. */
-    minSolForLaunch: Number(env('TREASURY_MIN_SOL_FOR_LAUNCH', '0.06')),
+    minSolForLaunch: Number(env('TREASURY_MIN_SOL_FOR_LAUNCH', '0.35')),
   },
   entryToken: {
     /** The ClawPump entry token mint. Empty until it launches; holder routes stay off until then. */

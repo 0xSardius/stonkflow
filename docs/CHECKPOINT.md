@@ -25,9 +25,15 @@ StonkFlow: agent launches of asset-paired coins on StonkFun via x402 + MCP + Cla
 ## Day 0-1 checks (2026-09-06)
 Results in PRD section 9. Summary: hosted ClawPump agents cannot sign external transactions (-> managed signing mode) but can pay any x402 URL (x402_pay). Self-hosted claw-agent (Hermes fork) attaches MCPs. ANSEM pair is launchable; official mint 9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump (a copycat ANSEM mint is also listed). UsePod is feasible; stack the Inference Markets track. Domain: stonkflow.xyz primary, .fun as redirect.
 
+## 2026-09-06 late
+- Founder confirmed steps 1-6 done: ClawPump agent created, API key in .env, x402 skill enabled, wallet funded, x402_pay against SolEnrich succeeded. (Agent wallet address and tx signature not yet recorded here.)
+- StonkFun prepare dry-run (no signing, no cost) PASSED with a throwaway wallet on the ANSEM pair: fields signedQuote, paymentTransaction, payment{to,lamports,sol,feeLamports,feeSol}, transferFee{bps}, mode, poolFeePercent, expiresAt. Types updated.
+- CORRECTION: the API launch fee is 0.2904 SOL (~$31 at $106/SOL), not 0.03 SOL. 0.03 SOL is the self-built LaunchLab path only. Managed price default raised to $35; treasury floor 0.35 SOL.
+- .env still uses old names TREASURY_KEYPAIR_PATH and DATABASE_URL; the app reads TREASURY_SECRET_KEY and LEDGER_DB_PATH (see .env.example).
+
 ## Next
-1. Founder-only checks: create ClawPump agent, enable x402 skill, live x402_pay against a SolEnrich endpoint, set payout wallet.
-2. First live self-mode launch on mainnet with the founder's wallet (verifies write-endpoint field names in src/stonkfun/types.ts).
+1. Record the ClawPump agent wallet and the x402 test tx signature here.
+2. First live self-mode launch on mainnet with the founder's wallet (costs 0.29 SOL + priority). Confirms submit/status field names.
 3. Deploy (Railway, same as solenrich) with PAYMENTS_ENABLED=true; set PUBLIC_URL; bazaar listing follows from CDP settlement.
 4. Treasury keypair + ENTRY_TOKEN_MINT after the token launch; buyback job swap wiring (Jupiter).
 5. Skill PR to ClawPump/agents-skills; MCP manifest for claw-agent optional-mcps.

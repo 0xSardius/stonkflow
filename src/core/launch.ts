@@ -49,6 +49,8 @@ export interface SelfLaunchResult {
   signedQuote: string;
   expiresAt: string | null;
   transferFeeBps: number | null;
+  /** SOL the creator wallet pays when it signs (platform launch fee). */
+  feeSol: number | null;
   next: string;
 }
 
@@ -199,7 +201,8 @@ export class LaunchCore {
         signedQuote: prepared.signedQuote,
         expiresAt: prepared.expiresAt ?? null,
         transferFeeBps,
-        next: `Sign unsignedTransaction with ${creatorWallet}, then POST /v1/launch/submit { launchId, signedTransaction }.`,
+        feeSol: prepared.payment?.feeSol ?? null,
+        next: `Sign unsignedTransaction with ${creatorWallet} (it pays ${prepared.payment?.feeSol ?? '?'} SOL to StonkFun), then POST /v1/launch/submit { launchId, signedTransaction }.`,
       };
     }
 

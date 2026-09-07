@@ -60,7 +60,7 @@ Signing model (decided 2026-09-06 after the Day-1 checks):
 
 
 - Base `/v1`. JSON. Idempotency key on every write. Errors as `{ error: { code, message } }`.
-- `POST /launch` (x402; `self` $1.00, `managed` $1.00 + 0.03 SOL at Jupiter spot + 10%; holder price halves the USD part): validates input against `GET /pairs`, calls StonkFun `POST /launches/prepare`. `self` returns `{ launchId, unsignedTransaction, quote, expiresAt }`. `managed` signs, submits, and returns `{ launchId, status }` directly.
+- `POST /launch` (x402; `self` $1.00 plus the agent pays StonkFun's 0.2904 SOL launch fee itself when it signs; `managed` $1.00 + 0.2904 SOL at spot + 10%, about $35 at $106/SOL; holder price discounts the USD part): validates input against `GET /pairs`, calls StonkFun `POST /launches/prepare`. `self` returns `{ launchId, unsignedTransaction, quote, expiresAt }`. `managed` signs, submits, and returns `{ launchId, status }` directly.
 - `POST /launch/submit` (free): forwards the signed transaction to StonkFun `POST /launches/submit`, stores the payment signature, returns `{ launchId, status }`.
 - `GET /launch/{launchId}` (free): polls StonkFun `GET /launches/{paymentSignature}`, returns status, mint, pool address.
 - `POST /fees/claim` (x402, $0.10): wraps StonkFun claim prepare; `POST /fees/claim/submit` (free) wraps claim submit.
@@ -72,7 +72,7 @@ Signing model (decided 2026-09-06 after the Day-1 checks):
 
 - x402 middleware reused from solenrich. USDC on Solana; Base accepted. Facilitator: PayAI or CDP.
 - Holder price: agent sends `X-Wallet` and `X-Wallet-Signature` over a server nonce; server checks entry-token balance above a threshold, returns the lower price in the 402 response.
-- SOL fronting is folded into `managed` mode: the treasury pays the 0.03 SOL deploy fee and the agent repays it inside the x402 price. No SOL is sent to agent wallets.
+- SOL fronting is folded into `managed` mode: the treasury pays the 0.2904 SOL launch fee (verified live 2026-09-06; the 0.03 SOL figure applies only to self-built LaunchLab transactions) and the agent repays it inside the x402 price. No SOL is sent to agent wallets.
 
 ### 7.3 MCP server and skill
 
@@ -148,5 +148,5 @@ Sep 6-7 checks. Sep 8 register, agent, payout wallet, livestream slot. Sep 8-9 r
 1. Final name and X handle (StonkFlow assumed).
 2. Entry-token holder threshold for the discount.
 3. Share of router income allocated to buybacks.
-4. Treasury hot-wallet cap for managed launches (0.03 SOL each plus buybacks).
+4. Treasury hot-wallet cap for managed launches (0.29 SOL each plus buybacks; a 2 SOL cap is about 6 launches).
 5. Whether StonkFun will list a graduated pump.fun token as a custom quote pair.

@@ -83,6 +83,10 @@ export interface PrepareLaunchResponse {
   /** Unsigned SOL payment transaction, base64. Named per the /submit description. */
   paymentTransaction: string;
   expiresAt?: string;
+  /** Verified live 2026-09-06: the platform launch fee the creator pays in SOL (0.2904 SOL on the API path). */
+  payment?: { to: string; lamports: number; sol: number; feeLamports: number; feeSol: number };
+  mode?: StonkMode;
+  poolFeePercent?: number;
   transferFee?: { bps: number } | null;
   devBuy?: Record<string, unknown> | null;
   airdrop?: Record<string, unknown> | null;
