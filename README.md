@@ -10,6 +10,7 @@ AnsemHack Clawrena entry. Register and tokenize on ClawPump by 2026-09-20 23:59 
 
 - `docs/PRD.md` — product requirements (v0.1)
 - `docs/CHECKPOINT.md` — session checkpoint; read first
+- `docs/TASKS.md` — task list with owners and dates
 - `docs/prompts/solenrich-stonkfun-x402-prompt.md` — optional SolEnrich data endpoints (not on the critical path)
 
 ## Value proposition
